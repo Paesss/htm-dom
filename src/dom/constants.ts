@@ -3,6 +3,13 @@ import type { MissingKeys } from "../types/type-utils";
 
 export const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
+type Assert<T extends true> = T;
+
+type IsComplete<All extends PropertyKey, Actual extends readonly PropertyKey[]> =
+  MissingKeys<All, Actual> extends never
+    ? true
+    : ["Missing keys", MissingKeys<All, Actual>];
+
 const BOOLEAN_PROP_KEYS = [
   "allowFullscreen",
   "async",
@@ -60,13 +67,11 @@ const BOOLEAN_PROP_KEYS = [
   "willValidate",
 ] as const satisfies readonly CombinedBooleanKeys[];
 
-const BOOLEAN_PROP_KEYS_CHECK: typeof BOOLEAN_PROP_KEYS &
-  (MissingKeys<CombinedBooleanKeys, typeof BOOLEAN_PROP_KEYS> extends never
-    ? unknown
-    : ["Missing keys", MissingKeys<CombinedBooleanKeys, typeof BOOLEAN_PROP_KEYS>]) =
-  BOOLEAN_PROP_KEYS;
+export type BooleanPropKeysAreComplete = Assert<
+  IsComplete<CombinedBooleanKeys, typeof BOOLEAN_PROP_KEYS>
+>;
 
-const BOOLEAN_PROPS = new Set<string>(BOOLEAN_PROP_KEYS_CHECK);
+const BOOLEAN_PROPS = new Set<string>(BOOLEAN_PROP_KEYS);
 
 export const isBooleanPropKey = (key: string): key is CombinedBooleanKeys => BOOLEAN_PROPS.has(key);
 
@@ -136,10 +141,7 @@ const SVG_TAG_KEYS = [
   "view",
 ] as const satisfies readonly SVGTagName[];
 
-const SVG_TAG_KEYS_CHECK: typeof SVG_TAG_KEYS &
-  (MissingKeys<SVGTagName, typeof SVG_TAG_KEYS> extends never
-    ? unknown
-    : ["Missing keys", MissingKeys<SVGTagName, typeof SVG_TAG_KEYS>]) = SVG_TAG_KEYS;
+export type SvgTagKeysAreComplete = Assert<IsComplete<SVGTagName, typeof SVG_TAG_KEYS>>;
 
 type SVGTagKey = (typeof SVG_TAG_KEYS)[number];
 type SVGTagLookupKey = Lowercase<SVGTagKey>;
@@ -149,8 +151,8 @@ const CAMEL_CASE_SVG_TAGS = new Map<string, SVGTagKey>();
 
 const UPPERCASE_REGEX = /[A-Z]/;
 
-for (let i = 0; i < SVG_TAG_KEYS_CHECK.length; i++) {
-  const tag = SVG_TAG_KEYS_CHECK[i];
+for (let i = 0; i < SVG_TAG_KEYS.length; i++) {
+  const tag = SVG_TAG_KEYS[i];
   const lower = tag.toLowerCase();
 
   SVG_TAG_SET.add(lower);
@@ -163,7 +165,7 @@ for (let i = 0; i < SVG_TAG_KEYS_CHECK.length; i++) {
 export const isSvgTagName = (key: string): key is SVGTagLookupKey =>
   SVG_TAG_SET.has(key.toLowerCase());
 
-export function getSvgTagName(key: string): SVGTagKey | undefined {
+export const getSvgTagName = (key: string): SVGTagKey | undefined => {
   const lower = key.toLowerCase();
   if (!SVG_TAG_SET.has(lower)) return undefined;
 
