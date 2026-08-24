@@ -1,4 +1,3 @@
-
 export type CanonicalSvgTagName<Tag extends string> = Extract<
   {
     [Name in Extract<keyof SVGElementTagNameMap, string>]: Lowercase<Name> extends Lowercase<Tag>
@@ -37,5 +36,3 @@ export type CombinedElement =
   | HTMLElementTagNameMap[keyof HTMLElementTagNameMap]
   | HTMLElementDeprecatedTagNameMap[keyof HTMLElementDeprecatedTagNameMap]
   | SVGElementTagNameMap[keyof SVGElementTagNameMap];
-
-

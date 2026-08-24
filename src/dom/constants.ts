@@ -1,4 +1,4 @@
-import type { SVGTagName, CombinedBooleanKeys } from "../types/dom";
+import type { CombinedBooleanKeys, SVGTagName } from "../types/dom";
 import type { MissingKeys } from "../types/type-utils";
 
 export const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
@@ -160,8 +160,8 @@ for (let i = 0; i < SVG_TAG_KEYS_CHECK.length; i++) {
   }
 }
 
-export const isSvgTagName = (key: string): key is SVGTagLookupKey => SVG_TAG_SET.has(key.toLowerCase());
-
+export const isSvgTagName = (key: string): key is SVGTagLookupKey =>
+  SVG_TAG_SET.has(key.toLowerCase());
 
 export function getSvgTagName(key: string): SVGTagKey | undefined {
   const lower = key.toLowerCase();

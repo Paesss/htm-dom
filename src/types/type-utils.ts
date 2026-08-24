@@ -1,4 +1,3 @@
-
 type IsBooleanLike<T> = boolean extends T ? true : T extends boolean ? true : false;
 
 type IsWritable<T, K extends keyof T> = { [P in K]: T[P] } extends { -readonly [P in K]: T[P] }

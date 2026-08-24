@@ -1,5 +1,5 @@
-import { isNode } from "../utils/dom";
 import type { VNodeChild } from "../types/dom";
+import { isNode } from "../utils/dom";
 
 export function appendChildren(parent: Node, children: VNodeChild[]): void {
   for (let i = 0; i < children.length; i++) {
@@ -16,6 +16,7 @@ export function appendChildren(parent: Node, children: VNodeChild[]): void {
     }
   }
 }
+
 import { isBooleanPropKey } from "./constants";
 
 export function setDataset(el: Element, dataset: Record<string, unknown>): void {
