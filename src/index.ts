@@ -9,8 +9,8 @@ export type {
   StyleObject,
   SVGProps,
   VNodeChild,
-} from "./h";
-export { default as h } from "./h";
+} from "./dom";
+export { default as h } from "./dom";
 export { html };
 
 export default html;

@@ -1,22 +1,4 @@
-import { isNode } from "@/utils/domutils";
 import { isBooleanPropKey } from "./constants";
-import type { VNodeChild } from "./types";
-
-export function appendChildren(parent: Node, children: VNodeChild[]): void {
-  for (let i = 0; i < children.length; i++) {
-    const child = children[i];
-
-    if (child == null || typeof child === "boolean") continue;
-
-    if (Array.isArray(child)) {
-      appendChildren(parent, child);
-    } else if (isNode(child)) {
-      parent.appendChild(child);
-    } else {
-      parent.appendChild(document.createTextNode(String(child)));
-    }
-  }
-}
 
 export function setDataset(el: Element, dataset: Record<string, unknown>): void {
   if ("dataset" in el && el.dataset) {

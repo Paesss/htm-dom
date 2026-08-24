@@ -2,8 +2,8 @@
 // @ts-expect-error -- jsdom has no declaration file in this project.
 import { JSDOM } from "jsdom";
 import { describe, expect, it } from "vitest";
-import { h } from "../src/h/h";
-import { appendChildren } from "../src/h/utils";
+import { appendChildren } from "../src/dom/children";
+import { h } from "../src/dom/factory";
 
 describe("DOM adapter", () => {
   it("creates normalized SVG elements and attributes", () => {

@@ -3,10 +3,11 @@ import type {
   CanonicalSvgTagName,
   HtmlElementForTag,
   SvgElementForTag,
-} from "@/types/dom.types";
+} from "../types/dom";
 import { getSvgTagName, SVG_NAMESPACE } from "./constants";
-import type { ComponentFunction, DOMProps, HTMLProps, SVGProps, VNodeChild } from "./types";
-import { appendChildren, setProps } from "./utils";
+import type { ComponentFunction, DOMProps, HTMLProps, SVGProps, VNodeChild } from "../types/dom";
+import { appendChildren } from "./children";
+import { setProps } from "./props";
 
 // Tracks active SVG namespace context down the synchronous tree evaluation
 let CURRENT_IS_SVG = false;

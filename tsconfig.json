@@ -1,9 +1,5 @@
 {
   "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"],
-      "@h": ["./src/index.ts"],
-    },
     "types": ["node"],
     "target": "ES2024",
     "useDefineForClassFields": true,

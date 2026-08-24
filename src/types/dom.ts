@@ -1,7 +1,15 @@
-import type {  CombinedElement, DOMEventHandlers } from "@/types/dom.types";
-import type { BooleanKeys } from "@/types/utils";
+import type { CombinedElement, DOMEventHandlers } from "./dom-elements";
+import type { BooleanKeys } from "./type-utils";
 
-export type { DOMEventHandlers } from "@/types/dom.types";
+export type {
+  CanonicalHtmlTagName,
+  CanonicalSvgTagName,
+  CombinedElement,
+  DOMEventHandlers,
+  HtmlElementForTag,
+  SVGTagName,
+  SvgElementForTag,
+} from "./dom-elements";
 
 export type VNodeChild = Node | string | number | boolean | null | undefined | VNodeChild[];
 
@@ -20,7 +28,6 @@ export type DataProps = {
 export type AriaProps = {
   [K in `aria-${string}`]?: string | number | boolean | null | undefined;
 };
-
 
 type BaseDOMProps<T extends Element> = DOMEventHandlers<T> &
   DataProps &
@@ -56,11 +63,8 @@ export type DOMProps<T extends Element = Element> = T extends SVGElement
     ? HTMLProps<T>
     : BaseDOMProps<T>;
 
-
 export type ComponentFunction<P = Record<string, unknown>> = (
   props: P & { children?: VNodeChild }
 ) => Element | DocumentFragment | VNodeChild;
 
-
 export type CombinedBooleanKeys = BooleanKeys<CombinedElement>;
-

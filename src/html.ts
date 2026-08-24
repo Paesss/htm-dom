@@ -1,8 +1,8 @@
 import htm from "xhtm";
-import { isNode } from "@/utils/domutils";
+import { appendChildren } from "./dom/children";
 import { h } from "./entrypoints/es";
-import type { VNodeChild } from "./h/types";
-import { appendChildren } from "./h/utils";
+import type { VNodeChild } from "./types/dom";
+import { isNode } from "./utils/dom";
 
 const boundHtm = htm.bind(h);
 
