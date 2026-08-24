@@ -1,0 +1,61 @@
+{
+  "name": "XHTM",
+  "scopeName": "source.xhtm",
+  "fileTypes": ["xhtm"],
+  "injectionSelector": "L:source.js -comment -string, L:source.ts -comment -string",
+  "injectTo": ["source.js", "source.ts"],
+  "patterns": [
+    {
+      "include": "#xhtm-template"
+    }
+  ],
+  "repository": {
+    "xhtm-template": {
+      "name": "meta.template.xhtm",
+      "begin": "\\b(html)(`)",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.tagged-template.js"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.js"
+        }
+      },
+      "end": "`",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.js"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#interpolation"
+        },
+        {
+          "include": "text.html.basic"
+        }
+      ]
+    },
+
+    "interpolation": {
+      "name": "meta.embedded.expression.xhtm",
+      "begin": "\\$\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.embedded.begin.js"
+        }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.embedded.end.js"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.js"
+        }
+      ]
+    }
+  }
+}

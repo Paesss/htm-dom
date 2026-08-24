@@ -1,0 +1,57 @@
+{
+  "name": "xhtm-dom",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:es": "vite build --config vite.es.config.ts",
+    "build:legacy": "vite build --config vite.legacy.config.ts",
+    "build:userscript": "vite build --config vite.userscript.config.ts",
+    "build:config": "tsc -p tsconfig.node.json --noEmit",
+    "build:types": "tsc -p tsconfig.types.json",
+    "build:package": "npm run build:config && npm run build:types && npm run build:es && npm run build:legacy && npm run build:userscript",
+    "build:docs": "tsx scripts/render-docs.ts",
+    "test": "vitest run --environment jsdom",
+    "preview": "vite preview"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/xhtm-dom.js",
+      "require": "./dist/xhtm-dom.cjs",
+      "default": "./dist/xhtm-dom.umd.js"
+    }
+  },
+  "main": "./dist/xhtm-dom.cjs",
+  "module": "./dist/xhtm-dom.js",
+  "unpkg": "./dist/xhtm-dom.umd.js",
+  "jsdelivr": "./dist/xhtm-dom.umd.js",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "2.5.9",
+    "@swc/cli": "^0.8.1",
+    "@swc/core": "^1.16.1",
+    "@types/node": "^26.2.0",
+    "handlebars": "^4.7.9",
+    "jsdom": "^30.0.1",
+    "marked": "^18.0.10",
+    "marked-shiki": "^1.2.1",
+    "shiki": "^4.4.3",
+    "tslib": "^2.8.1",
+    "tsx": "^4.23.12",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.11",
+    "vite-plugin-monkey": "^8.0.0",
+    "vitest": "^4.1.11"
+  },
+  "dependencies": {
+    "xhtm": "1.8.0"
+  },
+  "allowScripts": {
+    "@swc/core@1.16.1": true,
+    "esbuild@0.28.2": true
+  }
+}
