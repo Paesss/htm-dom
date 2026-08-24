@@ -1,7 +1,7 @@
 import h from "../h";
 import html from "../html";
 
-function getGlobal(): typeof globalThis {
+const getGlobal = () => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -19,6 +19,6 @@ function getGlobal(): typeof globalThis {
   }
 
   throw new Error("Unable to locate the global object");
-}
+};
 
 getGlobal().html = Object.assign(html, { h });

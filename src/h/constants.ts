@@ -69,9 +69,7 @@ const BOOLEAN_PROP_KEYS_CHECK: typeof BOOLEAN_PROP_KEYS &
 
 const BOOLEAN_PROPS = new Set<string>(BOOLEAN_PROP_KEYS_CHECK);
 
-export function isBooleanPropKey(key: string): key is CombinedBooleanKeys {
-  return BOOLEAN_PROPS.has(key);
-}
+export const isBooleanPropKey = (key: string): key is CombinedBooleanKeys => BOOLEAN_PROPS.has(key);
 
 const SVG_TAG_KEYS = [
   "a",
@@ -163,9 +161,8 @@ for (let i = 0; i < SVG_TAG_KEYS_CHECK.length; i++) {
   }
 }
 
-export function isSvgTagName(key: string): key is SVGTagLookupKey {
-  return SVG_TAG_SET.has(key.toLowerCase());
-}
+export const isSvgTagName = (key: string): key is SVGTagLookupKey => SVG_TAG_SET.has(key.toLowerCase());
+
 
 export function getSvgTagName(key: string): SVGTagKey | undefined {
   const lower = key.toLowerCase();
@@ -173,4 +170,3 @@ export function getSvgTagName(key: string): SVGTagKey | undefined {
 
   return (CAMEL_CASE_SVG_TAGS.get(lower) || lower) as SVGTagKey;
 }
-

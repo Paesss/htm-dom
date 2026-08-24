@@ -1,10 +1,10 @@
-import { getSvgTagName, SVG_NAMESPACE } from "@/h/constants";
 import type {
   CanonicalHtmlTagName,
   CanonicalSvgTagName,
   HtmlElementForTag,
   SvgElementForTag,
 } from "@/types/dom.types";
+import { getSvgTagName, SVG_NAMESPACE } from "./constants";
 import type { ComponentFunction, DOMProps, HTMLProps, SVGProps, VNodeChild } from "./types";
 import { appendChildren, setProps } from "./utils";
 

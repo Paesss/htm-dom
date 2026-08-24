@@ -12,8 +12,7 @@ export default defineConfig({
       fileName: (format) => {
         if (format === "es") return "xhtm-dom.js";
         return `xhtm-dom.${format}.js`;
-      },
-      name: "html",
+      }
     },
   },
 });

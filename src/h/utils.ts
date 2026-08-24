@@ -1,6 +1,6 @@
-import type { VNodeChild } from "@h";
 import { isNode } from "@/utils/domutils";
 import { isBooleanPropKey } from "./constants";
+import type { VNodeChild } from "./types";
 
 export function appendChildren(parent: Node, children: VNodeChild[]): void {
   for (let i = 0; i < children.length; i++) {
