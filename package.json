@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:es": "vite build --config vite.es.config.ts",
-    "build:legacy": "vite build --config vite.legacy.config.ts",
+    "build:es": "vite build --config vite.config.ts",
+    "build:legacy": "vite build --config vite.umd.config.ts",
     "build:userscript": "vite build --config vite.userscript.config.ts",
     "build:config": "tsc -p tsconfig.node.json --noEmit",
     "build:types": "tsc -p tsconfig.types.json",

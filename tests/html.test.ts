@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import h from "../src/dom/factory";
 import globalHtml from "../src/entrypoints/global";
 import html from "../src/html";
-import "../src/entrypoints/userscript";
+import "../src/entrypoints/index.userscript";
 
 describe("html tagged template", () => {
   it("installs the browser globals consistently for userscript builds", () => {

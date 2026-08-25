@@ -1,29 +1,12 @@
-import { defineConfig } from "vite";
+import { mergeConfig } from "vite";
 import monkey from "vite-plugin-monkey";
-import pkg from "./package.json";
+import pkg from "./package.json" with { type: "json" };
+import baseConfig from "./vite.config.ts";
 
 const xhtmVersion = pkg.dependencies.xhtm;
 const packageName = pkg.name;
-// https://vitejs.dev/config/
-export default defineConfig({
-  build: {
-    emptyOutDir: false,
-    minify: false,
-  },
-  plugins: [
-    monkey({
-      entry: "src/entrypoints/userscript.ts",
-      userscript: {
-        name: packageName,
-        author: "Paesss",
-        namespace: "https://greasyfork.org/users/1635096-paesss",
-        license: "MIT",
-        description:
-          "A tiny, framework-free DOM helper for writing HTML-like templates in plain JavaScript or TypeScript.",
-        match: ["*://*/*"],
-        version: xhtmVersion,
-      },
-      generate: ({ userscript }) => `${userscript}
+
+const appendLicense = (metadata: string) => `${metadata}
 
 /* ========================================================================
 * Bundled Library: XHTM (xhtm@${xhtmVersion})
@@ -48,7 +31,23 @@ export default defineConfig({
 * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
-* ======================================================================== */`,
+* ======================================================================== */`;
+
+export default mergeConfig(baseConfig, {
+  plugins: [
+    monkey({
+      entry: "src/index.userscript.ts",
+      userscript: {
+        name: packageName,
+        author: "Paesss",
+        namespace: "https://greasyfork.org/users/1635096-paesss",
+        license: "MIT",
+        description:
+          "A tiny, framework-free DOM helper for writing HTML-like templates in plain JavaScript or TypeScript.",
+        match: ["*://*/*"],
+        version: xhtmVersion,
+      },
+      generate: ({ userscript }) => appendLicense(userscript),
     }),
   ],
 });

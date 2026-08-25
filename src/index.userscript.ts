@@ -1,10 +1,10 @@
-import globalHtml from "./global";
+import globalHtml from "./index.umd";
 
 declare global {
   var html: typeof globalHtml;
 }
 
-function getGlobal() {
+function getGlobal(): typeof globalThis {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
