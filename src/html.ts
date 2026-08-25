@@ -6,10 +6,10 @@ import { isNode } from "./utils/dom";
 
 const boundHtm = htm.bind(h);
 
-export default function html<R extends Node>(statics: TemplateStringsArray, ...args: VNodeChild[]): R;
+function html<R extends Node>(statics: TemplateStringsArray, ...args: VNodeChild[]): R;
 
 // Wrapper needed so that one can appendChild/append the results of html`...`
-export default function html(
+function html(
   statics: TemplateStringsArray,
   ...args: VNodeChild[]
 ): DocumentFragment | Element | Text {
@@ -27,3 +27,5 @@ export default function html(
 
   return document.createTextNode(String(result ?? ""));
 }
+
+export default html;
