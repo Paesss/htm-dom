@@ -1,7 +1,17 @@
 import { describe, expect, it } from "vitest";
+import h from "../src/dom/factory";
+import globalHtml from "../src/entrypoints/global";
 import html from "../src/html";
+import "../src/entrypoints/userscript";
 
 describe("html tagged template", () => {
+  it("installs the browser globals consistently for userscript builds", () => {
+    expect(globalThis.html).toBeDefined();
+    expect(globalThis.html).toBe(globalHtml);
+    expect(globalThis.html.html).toBe(html);
+    expect(globalThis.html.h).toBe(h);
+  });
+
   it("creates an element with interpolated text", () => {
     const username = '<img src="x">';
     const view: HTMLParagraphElement = html`<p>Hello ${username}</p>`;

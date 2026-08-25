@@ -1,7 +1,10 @@
-import h from "../dom";
-import html from "../html";
+import globalHtml from "./global";
 
-const getGlobal = () => {
+declare global {
+  var html: typeof globalHtml;
+}
+
+function getGlobal() {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -19,6 +22,6 @@ const getGlobal = () => {
   }
 
   throw new Error("Unable to locate the global object");
-};
+}
 
-getGlobal().html = Object.assign(html, { h });
+getGlobal().html = globalHtml;
