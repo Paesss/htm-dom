@@ -5,7 +5,6 @@ import { describe, expect, it } from "vitest";
 import { appendChildren } from "../src/dom/children";
 import h from "../src/dom/factory";
 
-
 describe("DOM adapter", () => {
   it("creates normalized SVG elements and attributes", () => {
     const clipPath: SVGClipPathElement = h("clipPath", { id: "clip" });
@@ -123,8 +122,7 @@ describe("DOM adapter", () => {
   });
 
   it("allows components to return nullish children", () => {
-    const empty = () => undefined;
-    const shouldBeUndefined: undefined = h(empty);
+    const shouldBeUndefined: undefined = h(() => undefined);
     expect(shouldBeUndefined).toBeUndefined();
     const shouldBeNull: null = h(() => null);
     expect(shouldBeNull).toBeNull();
