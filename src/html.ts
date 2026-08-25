@@ -1,12 +1,17 @@
 import htm from "xhtm";
 import { appendChildren } from "./dom/children";
-import { h } from "./dom/factory";
+import h from "./dom/factory";
 import type { VNodeChild } from "./types/dom";
 import { isNode } from "./utils/dom";
 
 const boundHtm = htm.bind(h);
 
-function html<R extends Node>(statics: TemplateStringsArray, ...args: VNodeChild[]): R;
+function html<
+  R extends Node | Text = DocumentFragment | Element | Text
+>(
+  statics: TemplateStringsArray,
+  ...args: VNodeChild[]
+): R;
 
 // Wrapper needed so that one can appendChild/append the results of html`...`
 function html(

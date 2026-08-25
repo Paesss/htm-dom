@@ -16,45 +16,45 @@ import { setProps } from "./props";
 // Tracks active SVG namespace context down the synchronous tree evaluation
 let CURRENT_IS_SVG = false;
 
-export function h<P extends object, R extends Element | DocumentFragment | VNodeChild>(
+function h<P extends object, R extends Element | DocumentFragment | VNodeChild>(
   tag: (props: P & { children?: VNodeChild }) => R,
   props?: P | null,
   ...children: VNodeChild[]
 ): R;
 
-export function h(
+function h(
   tag: null | undefined,
   props?: null | Record<string, unknown>,
   ...children: VNodeChild[]
 ): DocumentFragment;
 
-export function h<K extends keyof SVGElementTagNameMap>(
+function h<K extends keyof SVGElementTagNameMap>(
   tag: K,
   props?: SVGProps<SVGElementTagNameMap[K]> | null,
   ...children: VNodeChild[]
 ): SVGElementTagNameMap[K];
 
-export function h<K extends string>(
+function h<K extends string>(
   tag: K & (CanonicalSvgTagName<K> extends never ? never : unknown),
   props?: SVGProps<SvgElementForTag<K>> | null,
   ...children: VNodeChild[]
 ): SvgElementForTag<K>;
 
-export function h<K extends keyof HTMLElementTagNameMap>(
+function h<K extends keyof HTMLElementTagNameMap>(
   tag: K,
   props?: HTMLProps<HTMLElementTagNameMap[K]> | null,
   ...children: VNodeChild[]
 ): HTMLElementTagNameMap[K];
 
-export function h<K extends string>(
+function h<K extends string>(
   tag: K & (CanonicalHtmlTagName<K> extends never ? never : unknown),
   props?: HTMLProps<HtmlElementForTag<K>> | null,
   ...children: VNodeChild[]
 ): HtmlElementForTag<K>;
 
-export function h(tag: string, props?: DOMProps | null, ...children: VNodeChild[]): Element;
+function h(tag: string, props?: DOMProps | null, ...children: VNodeChild[]): Element;
 
-export function h(
+function h(
   tag?: string | ComponentFunction | null,
   props?: Record<string, unknown> | null,
   ...children: VNodeChild[]

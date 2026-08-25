@@ -8,4 +8,4 @@ export type {
   SVGProps,
   VNodeChild,
 } from "../types/dom";
-export { h, h as default } from "./factory";
+export { default as h, default } from "./factory";
