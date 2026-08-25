@@ -117,6 +117,13 @@ describe("DOM adapter", () => {
     expect(paragraph.textContent).toBe("content");
   });
 
+  it("allows components to return nullish children", () => {
+    const empty = () => undefined;
+
+    expect(h(empty)).toBeUndefined();
+    expect(h(() => null)).toBeNull();
+  });
+
   it("appends nodes created in another realm", () => {
     const otherWindow = new JSDOM("<span>foreign</span>").window;
     const foreignNode = otherWindow.document.querySelector("span");

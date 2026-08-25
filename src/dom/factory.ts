@@ -58,12 +58,12 @@ export function h(
   tag?: string | ComponentFunction | null,
   props?: Record<string, unknown> | null,
   ...children: VNodeChild[]
-): Element | DocumentFragment {
+): VNodeChild {
   if (typeof tag === "function") {
     const normalizedProps: Record<string, unknown> = Object.assign({}, props);
     normalizedProps.children =
       children.length === 0 ? undefined : children.length === 1 ? children[0] : children;
-    return tag(normalizedProps) as Element | DocumentFragment;
+    return tag(normalizedProps);
   }
 
   if (!tag) {
