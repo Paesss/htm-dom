@@ -3,10 +3,9 @@
 import { JSDOM } from "jsdom";
 import { describe, expect, it } from "vitest";
 import { appendChildren } from "../src/dom/children";
-import { h } from "../src/dom/factory";
-import html from "../src/html";
+import h from "../src/dom/factory";
 
-const s = html<Text>``;
+
 describe("DOM adapter", () => {
   it("creates normalized SVG elements and attributes", () => {
     const clipPath: SVGClipPathElement = h("clipPath", { id: "clip" });
