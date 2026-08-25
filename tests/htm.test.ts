@@ -8,7 +8,7 @@ import { h } from "../src/dom/factory";
 describe("DOM adapter", () => {
   it("creates normalized SVG elements and attributes", () => {
     const clipPath: SVGClipPathElement = h("clipPath", { id: "clip" });
-
+    
     const svg: SVGSVGElement = h("svg", { viewBox: "0 0 10 10" }, clipPath);
 
     expect(svg.namespaceURI).toBe("http://www.w3.org/2000/svg");

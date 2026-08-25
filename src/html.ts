@@ -6,7 +6,7 @@ import { isNode } from "./utils/dom";
 
 const boundHtm = htm.bind(h);
 
-export default function html<R>(statics: TemplateStringsArray, ...args: VNodeChild[]): R;
+export default function html<R extends Node>(statics: TemplateStringsArray, ...args: VNodeChild[]): R;
 
 // Wrapper needed so that one can appendChild/append the results of html`...`
 export default function html(
