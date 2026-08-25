@@ -43,9 +43,12 @@ describe("DOM adapter", () => {
   });
 
   it("restores SVG context around component children", () => {
-    const svgChild: () => SVGPathElement = () => h("path");
-    const htmlChild: () => HTMLDivElement = () => h("div");
-    const svg = h("svg", null, h(svgChild), h("foreignObject", null, h(htmlChild)));
+    const svgChildComponent: () => SVGPathElement = () => h("path");
+    const svgChild: SVGPathElement = h(svgChildComponent);
+    const htmlChildComponent: () => HTMLDivElement = () => h("div");
+    const htmlChild: HTMLDivElement = h(htmlChildComponent);
+    const foreignObject: SVGForeignObjectElement = h("foreignObject", null, htmlChild);
+    const svg: SVGSVGElement = h("svg", null, svgChild, foreignObject);
 
     expect(svg.querySelector("path")?.namespaceURI).toBe("http://www.w3.org/2000/svg");
     expect(svg.querySelector("div")?.namespaceURI).toBe("http://www.w3.org/1999/xhtml");
@@ -60,7 +63,8 @@ describe("DOM adapter", () => {
   });
 
   it("supports fragments and nested children", () => {
-    const fragment: DocumentFragment = h(null, null, ["one", [h("br"), "two"]]);
+    const lineBreak: HTMLBRElement = h("br");
+    const fragment: DocumentFragment = h(null, null, ["one", [lineBreak, "two"]]);
 
     expect(fragment.childNodes).toHaveLength(3);
     expect(fragment.textContent).toBe("onetwo");
@@ -112,22 +116,23 @@ describe("DOM adapter", () => {
     const component: (props: { children?: unknown }) => HTMLParagraphElement = (props: {
       children?: unknown;
     }) => h("p", null, String(props.children));
-    const paragraph = h(component, null, "content");
+    const paragraph: HTMLParagraphElement = h(component, null, "content");
 
     expect(paragraph.textContent).toBe("content");
   });
 
   it("allows components to return nullish children", () => {
     const empty = () => undefined;
-
-    expect(h(empty)).toBeUndefined();
-    expect(h(() => null)).toBeNull();
+    const shouldBeUndefined: undefined = h(empty);
+    expect(shouldBeUndefined).toBeUndefined();
+    const shouldBeNull: null = h(() => null);
+    expect(shouldBeNull).toBeNull();
   });
 
   it("appends nodes created in another realm", () => {
     const otherWindow = new JSDOM("<span>foreign</span>").window;
     const foreignNode = otherWindow.document.querySelector("span");
-    const parent = h("div");
+    const parent: HTMLDivElement = h("div");
 
     expect(foreignNode).not.toBeNull();
     appendChildren(parent, [foreignNode as unknown as Node]);
