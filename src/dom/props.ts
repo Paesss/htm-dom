@@ -1,4 +1,4 @@
-import { isBooleanPropKey } from "./constants";
+import { isBooleanPropKey } from "./constants.ts";
 
 export function setDataset(el: Element, dataset: Record<string, unknown>): void {
   if ("dataset" in el && el.dataset) {

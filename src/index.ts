@@ -7,7 +7,7 @@ export type {
   StyleObject,
   SVGProps,
   VNodeChild,
-} from "./dom";
+} from "./dom/index.ts";
 
-export { default as h } from "./dom";
-export { default as html } from "./html";
+export { default as h } from "./dom/index.ts";
+export { default as html } from "./html.ts";

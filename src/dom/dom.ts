@@ -1,5 +1,5 @@
-import type { CombinedElement, DOMEventHandlers } from "./dom-elements";
-import type { BooleanKeys } from "./type-utils";
+import type { CombinedElement, DOMEventHandlers } from "./dom-elements.ts";
+import type { BooleanKeys } from "./type-utils.ts";
 
 export type {
   CanonicalHtmlTagName,
@@ -9,7 +9,7 @@ export type {
   HtmlElementForTag,
   SVGTagName,
   SvgElementForTag,
-} from "./dom-elements";
+} from "./dom-elements.ts";
 
 export type VNodeChild = Node | string | number | boolean | null | undefined | VNodeChild[];
 

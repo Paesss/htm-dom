@@ -1,6 +1,6 @@
-export * from "./index";
+export * from "./index.ts";
 
-import * as exports from "./index";
+import * as exports from "./index.ts";
 
 declare global {
   var HTMDOM: typeof exports;

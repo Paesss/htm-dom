@@ -1,8 +1,8 @@
 import htm from "xhtm";
-import type { VNodeChild } from "./dom";
-import h from "./dom";
-import { appendChildren } from "./dom/children";
-import { isNode } from "./utils/dom";
+import { appendChildren } from "./dom/children.ts";
+import type { VNodeChild } from "./dom/index.ts";
+import h from "./dom/index.ts";
+import { isNode } from "./utils/dom.ts";
 
 const boundHtm = htm.bind(h);
 
