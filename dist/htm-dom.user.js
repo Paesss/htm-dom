@@ -3,7 +3,7 @@
 // @namespace    https://github.com/Paesss
 // @version      0.1.2
 // @author       Paesss
-// @description  A tiny, framework-free DOM helper for writing HTML-like templates in plain JavaScript or TypeScript.
+// @description  A tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to innerHTML
 // @license      MIT
 // @homepage     https://github.com/Paesss/htm-dom
 // @homepageURL  https://github.com/Paesss/htm-dom

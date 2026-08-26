@@ -12,8 +12,6 @@ export default mergeConfig(
         userscript: {
           namespace: pkg.author.url,
           license: "MIT",
-          description:
-            "A tiny, framework-free DOM helper for writing HTML-like templates in plain JavaScript or TypeScript.",
           match: ["*://*/*"],
         },
       }),
