@@ -1,4 +1,3 @@
-import { appendChildren } from "./children.js";
 import { getSvgTagName, SVG_NAMESPACE } from "./constants.js";
 import type {
   CanonicalHtmlTagName,
@@ -10,8 +9,9 @@ import type {
   SVGProps,
   SvgElementForTag,
   VNodeChild,
-} from "./dom.js";
-import { setProps } from "./props.js";
+} from "./dom.types.js";
+
+import { appendChildren, setProps } from "./utils.js";
 
 // Tracks active SVG namespace context down the synchronous tree evaluation
 let CURRENT_IS_SVG = false;

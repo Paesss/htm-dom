@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import h from "../src/dom/factory";
-import html from "../src/html";
 
-import "../src/index.userscript";
+import { h, html } from "../src/index.js";
+
+import "../src/index.userscript.js";
 
 describe("html tagged template", () => {
   it("installs the browser globals consistently for userscript builds", () => {

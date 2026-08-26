@@ -1,11 +1,4 @@
-export type {
-  ComponentFunction,
-  DOMEventHandlers,
-  DOMProps,
-  HTMLProps,
-  Ref,
-  StyleObject,
-  SVGProps,
-  VNodeChild,
-} from "./dom.js";
+export type * from "./constants.js";
+export type * from "./dom.types.js";
 export { default } from "./factory.js";
+export * from "./utils.js";

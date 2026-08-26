@@ -48,23 +48,6 @@
 		if (!no_symbols) __defProp(target, Symbol.toStringTag, { value: "Module" });
 		return target;
 	};
-	var VALID_NODE_TYPES = new Set([
-		1,
-		2,
-		3,
-		4,
-		7,
-		8,
-		9,
-		10,
-		11
-	]);
-	var isNode = (value) => {
-		if (value === null || typeof value !== "object") return false;
-		if (typeof Node !== "undefined" && value instanceof Node) return true;
-		const node = value;
-		return typeof node.nodeType === "number" && VALID_NODE_TYPES.has(node.nodeType) && typeof node.nodeName === "string" && typeof node.addEventListener === "function";
-	};
 	var SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 	var BOOLEAN_PROPS = new Set([
 		"allowFullscreen",
@@ -201,6 +184,23 @@
 		const lower = key.toLowerCase();
 		if (!SVG_TAG_SET.has(lower)) return void 0;
 		return CAMEL_CASE_SVG_TAGS.get(lower) || lower;
+	};
+	var VALID_NODE_TYPES = new Set([
+		1,
+		2,
+		3,
+		4,
+		7,
+		8,
+		9,
+		10,
+		11
+	]);
+	var isNode = (value) => {
+		if (value === null || typeof value !== "object") return false;
+		if (typeof Node !== "undefined" && value instanceof Node) return true;
+		const node = value;
+		return typeof node.nodeType === "number" && VALID_NODE_TYPES.has(node.nodeType) && typeof node.nodeName === "string" && typeof node.addEventListener === "function";
 	};
 	function appendChildren(parent, children) {
 		for (let i = 0; i < children.length; i++) {
@@ -424,8 +424,12 @@
 		return document.createTextNode(String(result ?? ""));
 	}
 	var src_exports = __exportAll({
+		appendChildren: () => appendChildren,
 		h: () => h,
-		html: () => html
+		html: () => html,
+		isNode: () => isNode,
+		setDataset: () => setDataset,
+		setProps: () => setProps
 	});
 	var globalContext = (() => {
 		if (typeof globalThis !== "undefined") return globalThis;
