@@ -6,9 +6,7 @@ export const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 type Assert<T extends true> = T;
 
 type IsComplete<All extends PropertyKey, Actual extends readonly PropertyKey[]> =
-  MissingKeys<All, Actual> extends never
-    ? true
-    : ["Missing keys", MissingKeys<All, Actual>];
+  MissingKeys<All, Actual> extends never ? true : ["Missing keys", MissingKeys<All, Actual>];
 
 const BOOLEAN_PROP_KEYS = [
   "allowFullscreen",
@@ -170,4 +168,4 @@ export const getSvgTagName = (key: string): SVGTagKey | undefined => {
   if (!SVG_TAG_SET.has(lower)) return undefined;
 
   return (CAMEL_CASE_SVG_TAGS.get(lower) || lower) as SVGTagKey;
-}
+};
