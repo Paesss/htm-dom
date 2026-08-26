@@ -16,21 +16,33 @@
   },
   "license": "MIT",
   "type": "module",
+
   "scripts": {
     "dev": "vite",
+
     "prebuild": "npm run build:config && npm run build:docs:internal && npm run format && npm run test",
+
     "build:internal": "vite build",
     "build": "npm run prebuild && npm run build:internal",
+
     "build:userscript": "npm run prebuild && npm run build:userscript:internal",
     "build:userscript:internal": "vite build --config vite.userscript.config.ts",
+
     "build:config": "tsc -p tsconfig.node.json --noEmit",
     "build:types": "tsc -p tsconfig.types.json",
+
     "build:package": "npm run prebuild && npm run build:types && npm run build:internal && npm run build:userscript:internal",
+
+    "version": "npm run build:package",
+
     "prepublishOnly": "npm run build:package",
+
     "build:docs:internal": "tsx docs/render-docs.ts",
     "build:docs": "npm run build:docs:internal && npm run format",
+
     "test": "vitest run --environment jsdom",
     "format": "npx @biomejs/biome format --write",
+
     "preview": "vite preview"
   },
   "exports": {
