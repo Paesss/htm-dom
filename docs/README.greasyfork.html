@@ -1,38 +1,99 @@
 <h1>xhtm-dom</h1>
-<p><code>xhtm-dom</code> is a tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to <code>innerHTML</code>.</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> username</span><span style="color:#FF7B72"> =</span><span style="color:#D2A8FF"> getUsername</span><span style="color:#E6EDF3">();</span></span>
+<p>
+  <code>xhtm-dom</code> is a tiny, framework-free DOM helper for JavaScript and
+  TypeScript. It gives you HTML-like tagged templates without building one large
+  HTML string and handing it to <code>innerHTML</code>.
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> username</span><span style="color:#FF7B72"> =</span><span style="color:#D2A8FF"> getUsername</span><span style="color:#E6EDF3">();</span></span>
 <span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> view</span><span style="color:#FF7B72"> =</span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">&#x3C;</span><span style="color:#7EE787">p</span><span style="color:#E6EDF3">>Hello, </span><span style="color:#FF7B72">${</span><span style="color:#E6EDF3">username</span><span style="color:#FF7B72">}</span><span style="color:#E6EDF3">&#x3C;/</span><span style="color:#7EE787">p</span><span style="color:#E6EDF3">></span><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#E6EDF3">document.body.</span><span style="color:#D2A8FF">append</span><span style="color:#E6EDF3">(view);</span></span></code></pre>
-<p>The template describes the structure. Dynamic values stay values: strings become text, DOM nodes stay nodes, arrays are flattened, and functions can produce components. The result is a real <code>Element</code>, <code>SVGElement</code>, <code>DocumentFragment</code>, or <code>Text</code> node.</p>
+<p>
+  The template describes the structure. Dynamic values stay values: strings
+  become text, DOM nodes stay nodes, arrays are flattened, and functions can
+  produce components. The result is a real <code>Element</code>,
+  <code>SVGElement</code>, <code>DocumentFragment</code>, or
+  <code>Text</code> node.
+</p>
 <h2>Why use it instead of <code>innerHTML</code>?</h2>
 <h3>1. Dynamic content does not become markup</h3>
-<p>With a normal template string, interpolation happens before the browser parses the result:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> username</span><span style="color:#FF7B72"> =</span><span style="color:#A5D6FF"> '&#x3C;img src=x onerror="alert(</span><span style="color:#FF7B72">\'</span><span style="color:#A5D6FF">XSS</span><span style="color:#FF7B72">\'</span><span style="color:#A5D6FF">)">'</span><span style="color:#E6EDF3">;</span></span>
+<p>
+  With a normal template string, interpolation happens before the browser parses
+  the result:
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> username</span><span style="color:#FF7B72"> =</span><span style="color:#A5D6FF"> '&#x3C;img src=x onerror="alert(</span><span style="color:#FF7B72">\'</span><span style="color:#A5D6FF">XSS</span><span style="color:#FF7B72">\'</span><span style="color:#A5D6FF">)">'</span><span style="color:#E6EDF3">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> view</span><span style="color:#FF7B72"> =</span><span style="color:#A5D6FF"> `&#x3C;p>Hello, ${</span><span style="color:#E6EDF3">username</span><span style="color:#A5D6FF">}&#x3C;/p>`</span><span style="color:#E6EDF3">;</span></span>
 <span class="line"><span style="color:#E6EDF3">document.body.innerHTML </span><span style="color:#FF7B72">=</span><span style="color:#E6EDF3"> view;</span></span></code></pre>
-<p>The interpolated value is now part of the HTML source. If it contains markup, <code>innerHTML</code> parses that markup as elements. Escaping every value correctly is your responsibility.</p>
-<p>With <code>xhtm-dom</code>, the static template and dynamic values remain separate:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> username</span><span style="color:#FF7B72"> =</span><span style="color:#A5D6FF"> '&#x3C;img src=x onerror="alert(</span><span style="color:#FF7B72">\'</span><span style="color:#A5D6FF">XSS</span><span style="color:#FF7B72">\'</span><span style="color:#A5D6FF">)">'</span><span style="color:#E6EDF3">;</span></span>
+<p>
+  The interpolated value is now part of the HTML source. If it contains markup,
+  <code>innerHTML</code> parses that markup as elements. Escaping every value
+  correctly is your responsibility.
+</p>
+<p>
+  With <code>xhtm-dom</code>, the static template and dynamic values remain
+  separate:
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> username</span><span style="color:#FF7B72"> =</span><span style="color:#A5D6FF"> '&#x3C;img src=x onerror="alert(</span><span style="color:#FF7B72">\'</span><span style="color:#A5D6FF">XSS</span><span style="color:#FF7B72">\'</span><span style="color:#A5D6FF">)">'</span><span style="color:#E6EDF3">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> view</span><span style="color:#FF7B72"> =</span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">&#x3C;</span><span style="color:#7EE787">p</span><span style="color:#E6EDF3">>Hello, </span><span style="color:#FF7B72">${</span><span style="color:#E6EDF3">username</span><span style="color:#FF7B72">}</span><span style="color:#E6EDF3">&#x3C;/</span><span style="color:#7EE787">p</span><span style="color:#E6EDF3">></span><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">;</span></span>
 <span class="line"><span style="color:#E6EDF3">document.body.</span><span style="color:#D2A8FF">append</span><span style="color:#E6EDF3">(view);</span></span></code></pre>
-<p>Here <code>username</code> is inserted as a text node, so the browser displays the characters instead of creating an <code>img</code> element. Dynamic DOM nodes are appended as nodes, not serialized and reparsed.</p>
-<p>This protects interpolation handled by the library. The template&#39;s own markup is still code and must be trusted. An API that deliberately inserts raw HTML would need the same care as <code>innerHTML</code>.</p>
+<p>
+  Here <code>username</code> is inserted as a text node, so the browser displays
+  the characters instead of creating an <code>img</code> element. Dynamic DOM
+  nodes are appended as nodes, not serialized and reparsed.
+</p>
+<p>
+  This protects interpolation handled by the library. The template&#39;s own
+  markup is still code and must be trusted. An API that deliberately inserts raw
+  HTML would need the same care as <code>innerHTML</code>.
+</p>
 <h3>2. Values can be nodes, not just strings</h3>
-<p><code>innerHTML</code> accepts a string. <code>xhtm-dom</code> accepts DOM nodes, nested arrays, strings, numbers, and components in the same child position:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> items</span><span style="color:#FF7B72"> =</span><span style="color:#E6EDF3"> [</span><span style="color:#A5D6FF">"One"</span><span style="color:#E6EDF3">, </span><span style="color:#A5D6FF">"Two"</span><span style="color:#E6EDF3">, </span><span style="color:#A5D6FF">"Three"</span><span style="color:#E6EDF3">];</span></span>
+<p>
+  <code>innerHTML</code> accepts a string. <code>xhtm-dom</code> accepts DOM
+  nodes, nested arrays, strings, numbers, and components in the same child
+  position:
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> items</span><span style="color:#FF7B72"> =</span><span style="color:#E6EDF3"> [</span><span style="color:#A5D6FF">"One"</span><span style="color:#E6EDF3">, </span><span style="color:#A5D6FF">"Two"</span><span style="color:#E6EDF3">, </span><span style="color:#A5D6FF">"Three"</span><span style="color:#E6EDF3">];</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> list</span><span style="color:#FF7B72"> =</span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span></span>
 <span class="line"><span style="color:#E6EDF3">  &#x3C;</span><span style="color:#7EE787">ul</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#FF7B72">    ${</span><span style="color:#E6EDF3">items.</span><span style="color:#D2A8FF">map</span><span style="color:#E6EDF3">((</span><span style="color:#FFA657">item</span><span style="color:#E6EDF3">) </span><span style="color:#FF7B72">=></span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">&#x3C;</span><span style="color:#7EE787">li</span><span style="color:#E6EDF3">></span><span style="color:#FF7B72">${</span><span style="color:#E6EDF3">item</span><span style="color:#FF7B72">}</span><span style="color:#E6EDF3">&#x3C;/</span><span style="color:#7EE787">li</span><span style="color:#E6EDF3">></span><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">)</span><span style="color:#FF7B72">}</span></span>
 <span class="line"><span style="color:#E6EDF3">  &#x3C;/</span><span style="color:#7EE787">ul</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">;</span></span></code></pre>
-<p>Existing nodes are appended directly. Nested arrays are recursively flattened, while <code>null</code>, <code>undefined</code>, and booleans are ignored. This makes conditional content and reusable pieces ordinary JavaScript values without an HTML serialization step.</p>
+<p>
+  Existing nodes are appended directly. Nested arrays are recursively flattened,
+  while <code>null</code>, <code>undefined</code>, and booleans are ignored.
+  This makes conditional content and reusable pieces ordinary JavaScript values
+  without an HTML serialization step.
+</p>
 <h3>3. DOM properties, events, and refs are first-class</h3>
-<p>An <code>innerHTML</code> string can describe attributes, but it cannot assign live object properties or attach event listeners without a second pass through the DOM. <code>xhtm-dom</code> does both during creation:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> inputRef</span><span style="color:#FF7B72"> =</span><span style="color:#E6EDF3"> { current: </span><span style="color:#79C0FF">null</span><span style="color:#E6EDF3"> };</span></span>
+<p>
+  An <code>innerHTML</code> string can describe attributes, but it cannot assign
+  live object properties or attach event listeners without a second pass through
+  the DOM. <code>xhtm-dom</code> does both during creation:
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> inputRef</span><span style="color:#FF7B72"> =</span><span style="color:#E6EDF3"> { current: </span><span style="color:#79C0FF">null</span><span style="color:#E6EDF3"> };</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> input</span><span style="color:#FF7B72"> =</span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span></span>
 <span class="line"><span style="color:#E6EDF3">  &#x3C;</span><span style="color:#7EE787">input</span></span>
@@ -46,15 +107,38 @@
 <span class="line"></span>
 <span class="line"><span style="color:#E6EDF3">inputRef.current?.</span><span style="color:#D2A8FF">focus</span><span style="color:#E6EDF3">();</span></span></code></pre>
 <ul>
-<li>A leading dot assigns a DOM property, such as <code>.value</code> or <code>.disabled</code>.</li>
-<li><code>onClick</code>, <code>onInput</code>, and other <code>on*</code> props call <code>addEventListener</code> directly.</li>
-<li><code>ref</code> accepts a callback or an object with a mutable <code>current</code> property.</li>
-<li><code>style</code> accepts either CSS text or an object.</li>
-<li><code>dataset</code>, <code>data-*</code>, and <code>aria-*</code> work without manual attribute plumbing.</li>
+  <li>
+    A leading dot assigns a DOM property, such as <code>.value</code> or
+    <code>.disabled</code>.
+  </li>
+  <li>
+    <code>onClick</code>, <code>onInput</code>, and other <code>on*</code> props
+    call <code>addEventListener</code> directly.
+  </li>
+  <li>
+    <code>ref</code> accepts a callback or an object with a mutable
+    <code>current</code> property.
+  </li>
+  <li><code>style</code> accepts either CSS text or an object.</li>
+  <li>
+    <code>dataset</code>, <code>data-*</code>, and <code>aria-*</code> work
+    without manual attribute plumbing.
+  </li>
 </ul>
-<p>This is especially useful for form controls, where an HTML <code>value</code> attribute and the current <code>input.value</code> property are not the same thing.</p>
-<p>Object values can be passed directly for styles and dataset entries. CSS properties use camelCase:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> style</span><span style="color:#FF7B72"> =</span><span style="color:#E6EDF3"> {</span></span>
+<p>
+  This is especially useful for form controls, where an HTML
+  <code>value</code> attribute and the current <code>input.value</code> property
+  are not the same thing.
+</p>
+<p>
+  Object values can be passed directly for styles and dataset entries. CSS
+  properties use camelCase:
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> style</span><span style="color:#FF7B72"> =</span><span style="color:#E6EDF3"> {</span></span>
 <span class="line"><span style="color:#E6EDF3">  backgroundColor: </span><span style="color:#A5D6FF">"rebeccapurple"</span><span style="color:#E6EDF3">,</span></span>
 <span class="line"><span style="color:#E6EDF3">  fontSize: </span><span style="color:#A5D6FF">"1.1rem"</span><span style="color:#E6EDF3">,</span></span>
 <span class="line"><span style="color:#E6EDF3">  marginTop: </span><span style="color:#A5D6FF">"1rem"</span><span style="color:#E6EDF3">,</span></span>
@@ -66,19 +150,42 @@
 <span class="line"><span style="color:#E6EDF3">    Message</span></span>
 <span class="line"><span style="color:#E6EDF3">  &#x3C;/</span><span style="color:#7EE787">div</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">;</span></span></code></pre>
-<p>This sets the element&#39;s styles and creates attributes such as <code>data-user-id=&quot;42&quot;</code> and <code>data-source=&quot;inbox&quot;</code>.</p>
+<p>
+  This sets the element&#39;s styles and creates attributes such as
+  <code>data-user-id=&quot;42&quot;</code> and
+  <code>data-source=&quot;inbox&quot;</code>.
+</p>
 <h3>4. The DOM tree is available immediately</h3>
-<p><code>xhtm-dom</code> creates the final DOM nodes directly. There is no virtual DOM, JSX compiler, rendering runtime, or string-to-DOM round trip to understand:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> content</span><span style="color:#FF7B72"> =</span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span></span>
+<p>
+  <code>xhtm-dom</code> creates the final DOM nodes directly. There is no
+  virtual DOM, JSX compiler, rendering runtime, or string-to-DOM round trip to
+  understand:
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> content</span><span style="color:#FF7B72"> =</span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span></span>
 <span class="line"><span style="color:#E6EDF3">  &#x3C;</span><span style="color:#7EE787">h1</span><span style="color:#E6EDF3">>Dashboard&#x3C;/</span><span style="color:#7EE787">h1</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#E6EDF3">  &#x3C;</span><span style="color:#7EE787">p</span><span style="color:#E6EDF3">>Ready.&#x3C;/</span><span style="color:#7EE787">p</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#E6EDF3">document.</span><span style="color:#D2A8FF">querySelector</span><span style="color:#E6EDF3">(</span><span style="color:#A5D6FF">"main"</span><span style="color:#E6EDF3">)?.</span><span style="color:#D2A8FF">append</span><span style="color:#E6EDF3">(content);</span></span></code></pre>
-<p>You can pass the result to <code>append</code>, <code>appendChild</code>, or standard DOM APIs. Top-level siblings become a <code>DocumentFragment</code>; a single scalar is normalized to a <code>Text</code> node.</p>
+<p>
+  You can pass the result to <code>append</code>, <code>appendChild</code>, or
+  standard DOM APIs. Top-level siblings become a <code>DocumentFragment</code>;
+  a single scalar is normalized to a <code>Text</code> node.
+</p>
 <h2>Components without a framework</h2>
-<p>Functions receive props and optional <code>children</code>, then return a node, fragment, text, array, or another supported child:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#D2A8FF"> Card</span><span style="color:#FF7B72"> =</span><span style="color:#E6EDF3"> ({ </span><span style="color:#FFA657">title</span><span style="color:#E6EDF3">, </span><span style="color:#FFA657">children</span><span style="color:#E6EDF3"> }) </span><span style="color:#FF7B72">=></span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span></span>
+<p>
+  Functions receive props and optional <code>children</code>, then return a
+  node, fragment, text, array, or another supported child:
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#D2A8FF"> Card</span><span style="color:#FF7B72"> =</span><span style="color:#E6EDF3"> ({ </span><span style="color:#FFA657">title</span><span style="color:#E6EDF3">, </span><span style="color:#FFA657">children</span><span style="color:#E6EDF3"> }) </span><span style="color:#FF7B72">=></span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span></span>
 <span class="line"><span style="color:#E6EDF3">  &#x3C;</span><span style="color:#7EE787">article</span><span style="color:#79C0FF"> class</span><span style="color:#E6EDF3">=</span><span style="color:#A5D6FF">"card"</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#E6EDF3">    &#x3C;</span><span style="color:#7EE787">h2</span><span style="color:#E6EDF3">></span><span style="color:#FF7B72">${</span><span style="color:#E6EDF3">title</span><span style="color:#FF7B72">}</span><span style="color:#E6EDF3">&#x3C;/</span><span style="color:#7EE787">h2</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#FF7B72">    ${</span><span style="color:#E6EDF3">children</span><span style="color:#FF7B72">}</span></span>
@@ -90,22 +197,52 @@
 <span class="line"><span style="color:#E6EDF3">    &#x3C;</span><span style="color:#7EE787">p</span><span style="color:#E6EDF3">>This is the card content.&#x3C;/</span><span style="color:#7EE787">p</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#E6EDF3">  &#x3C;/</span><span style="color:#FF7B72">${</span><span style="color:#E6EDF3">Card</span><span style="color:#FF7B72">}</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">;</span></span></code></pre>
-<p>This gives repeated UI a small composition boundary while leaving updates, state, routing, and lifecycle decisions to you. Calling <code>html</code> creates new nodes; it does not reconcile an earlier result.</p>
+<p>
+  This gives repeated UI a small composition boundary while leaving updates,
+  state, routing, and lifecycle decisions to you. Calling
+  <code>html</code> creates new nodes; it does not reconcile an earlier result.
+</p>
 <h2>TypeScript support</h2>
-<p>The lower-level <code>h</code> helper is typed for HTML tags, SVG tags, components, children, event handlers, refs, styles, <code>data-*</code>, <code>aria-*</code>, and property bindings:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> button</span><span style="color:#FF7B72"> =</span><span style="color:#D2A8FF"> h</span><span style="color:#E6EDF3">(</span><span style="color:#A5D6FF">"button"</span><span style="color:#E6EDF3">, {</span></span>
+<p>
+  The lower-level <code>h</code> helper is typed for HTML tags, SVG tags,
+  components, children, event handlers, refs, styles, <code>data-*</code>,
+  <code>aria-*</code>, and property bindings:
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> button</span><span style="color:#FF7B72"> =</span><span style="color:#D2A8FF"> h</span><span style="color:#E6EDF3">(</span><span style="color:#A5D6FF">"button"</span><span style="color:#E6EDF3">, {</span></span>
 <span class="line"><span style="color:#E6EDF3">  class: </span><span style="color:#A5D6FF">"primary"</span><span style="color:#E6EDF3">,</span></span>
 <span class="line"><span style="color:#E6EDF3">  disabled: </span><span style="color:#79C0FF">false</span><span style="color:#E6EDF3">,</span></span>
 <span class="line"><span style="color:#D2A8FF">  onClick</span><span style="color:#E6EDF3">: (</span><span style="color:#FFA657">event</span><span style="color:#FF7B72">:</span><span style="color:#FFA657"> MouseEvent</span><span style="color:#E6EDF3">) </span><span style="color:#FF7B72">=></span><span style="color:#E6EDF3"> console.</span><span style="color:#D2A8FF">log</span><span style="color:#E6EDF3">(event.currentTarget),</span></span>
 <span class="line"><span style="color:#E6EDF3">}, </span><span style="color:#A5D6FF">"Save"</span><span style="color:#E6EDF3">);</span></span></code></pre>
-<p><code>h</code> is useful when a template would be awkward or when a typed, programmatic construction API is preferable:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> fragment</span><span style="color:#FF7B72"> =</span><span style="color:#D2A8FF"> h</span><span style="color:#E6EDF3">(</span><span style="color:#79C0FF">null</span><span style="color:#E6EDF3">, </span><span style="color:#79C0FF">null</span><span style="color:#E6EDF3">,</span></span>
+<p>
+  <code>h</code> is useful when a template would be awkward or when a typed,
+  programmatic construction API is preferable:
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> fragment</span><span style="color:#FF7B72"> =</span><span style="color:#D2A8FF"> h</span><span style="color:#E6EDF3">(</span><span style="color:#79C0FF">null</span><span style="color:#E6EDF3">, </span><span style="color:#79C0FF">null</span><span style="color:#E6EDF3">,</span></span>
 <span class="line"><span style="color:#D2A8FF">  h</span><span style="color:#E6EDF3">(</span><span style="color:#A5D6FF">"span"</span><span style="color:#E6EDF3">, </span><span style="color:#79C0FF">null</span><span style="color:#E6EDF3">, </span><span style="color:#A5D6FF">"First"</span><span style="color:#E6EDF3">),</span></span>
 <span class="line"><span style="color:#D2A8FF">  h</span><span style="color:#E6EDF3">(</span><span style="color:#A5D6FF">"span"</span><span style="color:#E6EDF3">, </span><span style="color:#79C0FF">null</span><span style="color:#E6EDF3">, </span><span style="color:#A5D6FF">"Second"</span><span style="color:#E6EDF3">),</span></span>
 <span class="line"><span style="color:#E6EDF3">);</span></span></code></pre>
 <h2>SVG and standard DOM behavior</h2>
-<p>HTML elements use the HTML namespace and recognized SVG tags use the SVG namespace, even when an SVG tag is created without a top-level <code>&lt;svg&gt;</code>. SVG tag names are matched case-insensitively and normalized to their canonical names, such as <code>clipPath</code> and <code>linearGradient</code>. Mixed content such as <code>foreignObject</code> is supported:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> graphic</span><span style="color:#FF7B72"> =</span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span></span>
+<p>
+  HTML elements use the HTML namespace and recognized SVG tags use the SVG
+  namespace, even when an SVG tag is created without a top-level
+  <code>&lt;svg&gt;</code>. SVG tag names are matched case-insensitively and
+  normalized to their canonical names, such as <code>clipPath</code> and
+  <code>linearGradient</code>. Mixed content such as
+  <code>foreignObject</code> is supported:
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> graphic</span><span style="color:#FF7B72"> =</span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span></span>
 <span class="line"><span style="color:#E6EDF3">  &#x3C;</span><span style="color:#7EE787">svg</span><span style="color:#79C0FF"> viewBox</span><span style="color:#E6EDF3">=</span><span style="color:#A5D6FF">"0 0 100 100"</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#E6EDF3">    &#x3C;</span><span style="color:#7EE787">circle</span><span style="color:#79C0FF"> cx</span><span style="color:#E6EDF3">=</span><span style="color:#A5D6FF">"50"</span><span style="color:#79C0FF"> cy</span><span style="color:#E6EDF3">=</span><span style="color:#A5D6FF">"50"</span><span style="color:#79C0FF"> r</span><span style="color:#E6EDF3">=</span><span style="color:#A5D6FF">"40"</span><span style="color:#E6EDF3"> /></span></span>
 <span class="line"><span style="color:#E6EDF3">    &#x3C;</span><span style="color:#7EE787">foreignObject</span><span style="color:#79C0FF"> x</span><span style="color:#E6EDF3">=</span><span style="color:#A5D6FF">"10"</span><span style="color:#79C0FF"> y</span><span style="color:#E6EDF3">=</span><span style="color:#A5D6FF">"10"</span><span style="color:#79C0FF"> width</span><span style="color:#E6EDF3">=</span><span style="color:#A5D6FF">"80"</span><span style="color:#79C0FF"> height</span><span style="color:#E6EDF3">=</span><span style="color:#A5D6FF">"30"</span><span style="color:#E6EDF3">></span></span>
@@ -113,54 +250,126 @@
 <span class="line"><span style="color:#E6EDF3">    &#x3C;/</span><span style="color:#7EE787">foreignObject</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#E6EDF3">  &#x3C;/</span><span style="color:#7EE787">svg</span><span style="color:#E6EDF3">></span></span>
 <span class="line"><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">;</span></span></code></pre>
-<p>Self-closing tags, optional-close HTML tags, fragments, and normal HTML directives are accepted by the <code>xhtm</code> parser.</p>
+<p>
+  Self-closing tags, optional-close HTML tags, fragments, and normal HTML
+  directives are accepted by the <code>xhtm</code> parser.
+</p>
 <h2>The <code>h</code> helper</h2>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#D2A8FF">h</span><span style="color:#E6EDF3">(tag, props</span><span style="color:#FF7B72">?</span><span style="color:#E6EDF3">, </span><span style="color:#FF7B72">...</span><span style="color:#E6EDF3">children)</span></span></code></pre>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#D2A8FF">h</span><span style="color:#E6EDF3">(tag, props</span><span style="color:#FF7B72">?</span><span style="color:#E6EDF3">, </span><span style="color:#FF7B72">...</span><span style="color:#E6EDF3">children)</span></span></code></pre>
 <p>Its behavior is deliberately small:</p>
 <ul>
-<li>A string tag creates an HTML element or a recognized SVG element. Recognized SVG tags are detected without requiring an <code>&lt;svg&gt;</code> parent and normalized to their canonical names.</li>
-<li>A function tag receives copied props and normalized <code>children</code>.</li>
-<li>A missing tag (<code>null</code> or <code>undefined</code>) creates a <code>DocumentFragment</code>.</li>
-<li>Nodes, including nodes from another DOM realm, are appended directly.</li>
-<li>Strings and numbers become text nodes.</li>
-<li><code>null</code>, <code>undefined</code>, and booleans are skipped as children.</li>
-<li>Explicit children take precedence over <code>props.children</code>.</li>
+  <li>
+    A string tag creates an HTML element or a recognized SVG element. Recognized
+    SVG tags are detected without requiring an <code>&lt;svg&gt;</code> parent
+    and normalized to their canonical names.
+  </li>
+  <li>
+    A function tag receives copied props and normalized <code>children</code>.
+  </li>
+  <li>
+    A missing tag (<code>null</code> or <code>undefined</code>) creates a
+    <code>DocumentFragment</code>.
+  </li>
+  <li>Nodes, including nodes from another DOM realm, are appended directly.</li>
+  <li>Strings and numbers become text nodes.</li>
+  <li>
+    <code>null</code>, <code>undefined</code>, and booleans are skipped as
+    children.
+  </li>
+  <li>Explicit children take precedence over <code>props.children</code>.</li>
 </ul>
 <h2>When <code>innerHTML</code> is still the right choice</h2>
 <p>This library is not a universal replacement for <code>innerHTML</code>:</p>
 <ul>
-<li>Use <code>innerHTML</code> when you already have trusted, complete HTML and want the browser to parse it as HTML.</li>
-<li>Use a sanitizer before inserting any HTML that is not fully trusted.</li>
-<li>Use a UI framework when you need state management, reconciliation, effects, routing, or lifecycle hooks.</li>
-<li>Use a DOM implementation such as <code>jsdom</code> for server-side use and configure the environment appropriately.</li>
+  <li>
+    Use <code>innerHTML</code> when you already have trusted, complete HTML and
+    want the browser to parse it as HTML.
+  </li>
+  <li>Use a sanitizer before inserting any HTML that is not fully trusted.</li>
+  <li>
+    Use a UI framework when you need state management, reconciliation, effects,
+    routing, or lifecycle hooks.
+  </li>
+  <li>
+    Use a DOM implementation such as <code>jsdom</code> for server-side use and
+    configure the environment appropriately.
+  </li>
 </ul>
-<p>Choose <code>xhtm-dom</code> when dynamic values, direct DOM behavior, small components, and TypeScript types matter more than serializing a string.</p>
+<p>
+  Choose <code>xhtm-dom</code> when dynamic values, direct DOM behavior, small
+  components, and TypeScript types matter more than serializing a string.
+</p>
 <h2>Installation</h2>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> install</span><span style="color:#A5D6FF"> xhtm-dom</span></span></code></pre>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> install</span><span style="color:#A5D6FF"> xhtm-dom</span></span></code></pre>
 <p>The package exposes compiled files from <code>dist</code>:</p>
 <ul>
-<li><code>import</code>: ES module</li>
-<li><code>require</code>: CommonJS</li>
-<li><code>default</code>/browser: UMD build</li>
-<li><code>types</code>: generated TypeScript declarations</li>
+  <li><code>import</code>: ES module</li>
+  <li><code>require</code>: CommonJS</li>
+  <li><code>default</code>/browser: UMD build</li>
+  <li><code>types</code>: generated TypeScript declarations</li>
 </ul>
-<p>The library expects a browser-like DOM with <code>document</code> available. It is suitable for browser scripts, userscripts, and applications that already have a DOM.</p>
+<p>
+  The library expects a browser-like DOM with <code>document</code> available.
+  It is suitable for browser scripts, userscripts, and applications that already
+  have a DOM.
+</p>
 <h2>Userscript build</h2>
-<p>The Vite userscript entry point assigns the function to <code>globalThis.html</code>:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> view</span><span style="color:#FF7B72"> =</span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">&#x3C;</span><span style="color:#7EE787">div</span><span style="color:#79C0FF"> class</span><span style="color:#E6EDF3">=</span><span style="color:#A5D6FF">"notice"</span><span style="color:#E6EDF3">>Loaded&#x3C;/</span><span style="color:#7EE787">div</span><span style="color:#E6EDF3">></span><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">;</span></span>
+<p>
+  The Vite userscript entry point assigns the function to
+  <code>globalThis.html</code>:
+</p>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#79C0FF"> view</span><span style="color:#FF7B72"> =</span><span style="color:#79C0FF"> html</span><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">&#x3C;</span><span style="color:#7EE787">div</span><span style="color:#79C0FF"> class</span><span style="color:#E6EDF3">=</span><span style="color:#A5D6FF">"notice"</span><span style="color:#E6EDF3">>Loaded&#x3C;/</span><span style="color:#7EE787">div</span><span style="color:#E6EDF3">></span><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">;</span></span>
 <span class="line"><span style="color:#E6EDF3">document.body.</span><span style="color:#D2A8FF">append</span><span style="color:#E6EDF3">(view);</span></span></code></pre>
-<p>The generated userscript bundles <code>xhtm</code> and currently matches all HTTP and HTTPS pages. Narrow the userscript metadata before publishing a script for a specific site.</p>
+<p>
+  The generated userscript bundles <code>xhtm</code> and currently matches all
+  HTTP and HTTPS pages. Narrow the userscript metadata before publishing a
+  script for a specific site.
+</p>
 <h2>Development</h2>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> install</span></span>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> install</span></span>
 <span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> test</span></span>
 <span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> run</span><span style="color:#A5D6FF"> build</span></span></code></pre>
 <p>Additional commands:</p>
-<pre class="shiki github-dark-default" style="background-color:#0d1117;color:#e6edf3" tabindex="0"><code><span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> run</span><span style="color:#A5D6FF"> build:types</span></span>
+<pre
+  class="shiki github-dark-default"
+  style="background-color: #0d1117; color: #e6edf3"
+  tabindex="0"
+><code><span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> run</span><span style="color:#A5D6FF"> build:types</span></span>
 <span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> run</span><span style="color:#A5D6FF"> build:lib</span></span>
 <span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> run</span><span style="color:#A5D6FF"> build:package</span></span>
 <span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> run</span><span style="color:#A5D6FF"> dev</span></span>
 <span class="line"><span style="color:#FFA657">npm</span><span style="color:#A5D6FF"> run</span><span style="color:#A5D6FF"> build:docs</span></span></code></pre>
-<p><code>npm run build:docs</code> reads this file and generates the GitHub copy at <code>README.md</code> plus a rendered HTML copy at <code>docs/README.greasyfork.html</code>. It expands package metadata, converts Markdown to HTML, and highlights fenced code blocks with Shiki. Run it after changing this source README.</p>
-<p>This source uses Handlebars&#39; Mustache-style templates. Package metadata is available under <code>package</code>, so <code>xhtm-dom</code> and <code>0.0.0</code> are replaced from <code>package.json</code> during the docs build.</p>
+<p>
+  <code>npm run build:docs</code> reads this file and generates the GitHub copy
+  at <code>README.md</code> plus a rendered HTML copy at
+  <code>docs/README.greasyfork.html</code>. It expands package metadata,
+  converts Markdown to HTML, and highlights fenced code blocks with Shiki. Run
+  it after changing this source README.
+</p>
+<p>
+  This source uses Handlebars&#39; Mustache-style templates. Package metadata is
+  available under <code>package</code>, so <code>xhtm-dom</code> and
+  <code>0.0.0</code> are replaced from <code>package.json</code> during the docs
+  build.
+</p>
 <h2>License</h2>
-<p>This project is licensed under the MIT License. The userscript build includes <code>xhtm</code>, which is also distributed under the MIT License.</p>
+<p>
+  This project is licensed under the MIT License. The userscript build includes
+  <code>xhtm</code>, which is also distributed under the MIT License.
+</p>

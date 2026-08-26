@@ -8,5 +8,6 @@ export type {
   SVGProps,
   VNodeChild,
 } from "./dom";
+
 export { default as h } from "./dom";
-export { default } from "./html";
+export { default as html } from "./html";

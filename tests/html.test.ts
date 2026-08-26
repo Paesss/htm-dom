@@ -1,15 +1,15 @@
 import { describe, expect, it } from "vitest";
 import h from "../src/dom/factory";
 import html from "../src/html";
-import globalHtml from "../src/index.umd";
+
 import "../src/index.userscript";
 
 describe("html tagged template", () => {
   it("installs the browser globals consistently for userscript builds", () => {
-    expect(globalThis.html).toBeDefined();
-    expect(globalThis.html).toBe(globalHtml);
-    expect(globalThis.html.html).toBe(html);
-    expect(globalThis.html.h).toBe(h);
+    expect(globalThis.htmdom).toBeDefined();
+
+    expect(globalThis.htmdom.html).toBe(html);
+    expect(globalThis.htmdom.h).toBe(h);
   });
 
   it("creates an element with interpolated text", () => {

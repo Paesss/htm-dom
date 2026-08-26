@@ -1,10 +1,12 @@
-import globalHtml from "./index.umd";
+import * as exports from "./index";
+
+export * from "./index";
 
 declare global {
-  var html: typeof globalHtml;
+  var htmdom: typeof exports;
 }
 
-function getGlobal(): typeof globalThis {
+const globalContext: typeof globalThis = (() => {
   if (typeof globalThis !== "undefined") {
     return globalThis;
   }
@@ -13,15 +15,15 @@ function getGlobal(): typeof globalThis {
     return self;
   }
 
-  if (typeof window !== "undefined") {
-    return window;
-  }
-
   if (typeof global !== "undefined") {
     return global;
   }
 
-  throw new Error("Unable to locate the global object");
-}
+  if (typeof window !== "undefined") {
+    return window;
+  }
 
-getGlobal().html = globalHtml;
+  throw new Error("Unable to locate the global object");
+})();
+
+globalContext.htmdom = exports;

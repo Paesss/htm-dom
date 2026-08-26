@@ -1,7 +1,7 @@
-import { mergeConfig } from "vite";
+import { defineConfig, mergeConfig } from "vite";
 import monkey from "vite-plugin-monkey";
 import pkg from "./package.json" with { type: "json" };
-import baseConfig from "./vite.config.ts";
+import { minimalConfig } from "./vite.config.ts";
 
 const xhtmVersion = pkg.dependencies.xhtm;
 const packageName = pkg.name;
@@ -33,7 +33,8 @@ const appendLicense = (metadata: string) => `${metadata}
 * SOFTWARE.
 * ======================================================================== */`;
 
-export default mergeConfig(baseConfig, {
+export default mergeConfig(minimalConfig, defineConfig({
+ 
   plugins: [
     monkey({
       entry: "src/index.userscript.ts",
@@ -50,4 +51,4 @@ export default mergeConfig(baseConfig, {
       generate: ({ userscript }) => appendLicense(userscript),
     }),
   ],
-});
+}));
