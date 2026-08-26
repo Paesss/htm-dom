@@ -1,7 +1,7 @@
 import { defineConfig, mergeConfig } from "vite";
 import monkey from "vite-plugin-monkey";
 import pkg from "./package.json" with { type: "json" };
-import { sharedConfig, xhtmLicense } from "./vite.config.ts";
+import { sharedConfig, } from "./vite.config.ts";
 
 const xhtmVersion = pkg.dependencies.xhtm;
 const packageName = pkg.name;
