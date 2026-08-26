@@ -1,6 +1,6 @@
 # htm-dom
 
-A tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to &#x60;innerHTML&#x60;.
+A tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to innerHTML.
 
 ```js
 const username = getUsername();
