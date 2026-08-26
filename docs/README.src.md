@@ -1,6 +1,6 @@
 # {{package.name}}
 
-`{{package.name}}` is a tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to `innerHTML`.
+{{package.description}}.
 
 ```js
 const username = getUsername();

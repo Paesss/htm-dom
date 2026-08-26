@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { Biome } from "@biomejs/js-api/nodejs";
+
 import Handlebars from "handlebars";
 import { Marked } from "marked";
 import markedShiki from "marked-shiki";
@@ -8,9 +8,6 @@ import { type BundledLanguage, createHighlighter } from "shiki";
 
 import packageMetadata from "../package.json" with { type: "json" };
 import xhtmGrammar from "./xhtm.tmLanguage.json" with { type: "json" };
-
-const biome = new Biome();
-const { projectKey } = biome.openProject(process.cwd());
 
 const theme = "github-dark-default";
 const root = resolve(import.meta.dirname, "..");
@@ -78,11 +75,7 @@ const greaseForkHtml = (await new Marked()
   )
   .parse(sourceWithMetadata, { gfm: true })) as string;
 
-const { content: greaseForkHtmlFormatted } = biome.formatContent(projectKey, greaseForkHtml, {
-  filePath: greaseForkOutputPath,
-});
-
-await writeFile(greaseForkOutputPath, greaseForkHtmlFormatted);
+await writeFile(greaseForkOutputPath, greaseForkHtml);
 highlighter.dispose();
 
 console.log(`Rendered ${sourcePath} -> ${githubOutputPath} and ${greaseForkOutputPath}`);

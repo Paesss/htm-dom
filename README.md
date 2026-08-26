@@ -1,6 +1,6 @@
 # htm-dom
 
-`htm-dom` is a tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to `innerHTML`.
+A tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to &#x60;innerHTML&#x60;.
 
 ```js
 const username = getUsername();
@@ -249,7 +249,7 @@ npm run build:docs
 
 `npm run build:docs` reads this file and generates the GitHub copy at `README.md` plus a rendered HTML copy at `docs/README.greasyfork.html`. It expands package metadata, converts Markdown to HTML, and highlights fenced code blocks with Shiki. Run it after changing this source README.
 
-This source uses Handlebars' Mustache-style templates. Package metadata is available under `package`, so `htm-dom` and `0.0.0` are replaced from `package.json` during the docs build.
+This source uses Handlebars' Mustache-style templates. Package metadata is available under `package`, so `htm-dom` and `0.1.0` are replaced from `package.json` during the docs build.
 
 ## License
 
