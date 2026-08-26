@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         htm-dom
 // @namespace    https://github.com/Paesss
-// @version      0.1.7
+// @version      0.1.8
 // @author       Paesss
 // @description  A tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to innerHTML
 // @license      MIT
