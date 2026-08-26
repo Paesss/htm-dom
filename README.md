@@ -1,6 +1,6 @@
-# xhtm-dom
+# htm-dom
 
-`xhtm-dom` is a tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to `innerHTML`.
+`htm-dom` is a tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to `innerHTML`.
 
 ```js
 const username = getUsername();
@@ -26,7 +26,7 @@ document.body.innerHTML = view;
 
 The interpolated value is now part of the HTML source. If it contains markup, `innerHTML` parses that markup as elements. Escaping every value correctly is your responsibility.
 
-With `xhtm-dom`, the static template and dynamic values remain separate:
+With `htm-dom`, the static template and dynamic values remain separate:
 
 ```js
 const username = '<img src=x onerror="alert(\'XSS\')">';
@@ -41,7 +41,7 @@ This protects interpolation handled by the library. The template's own markup is
 
 ### 2. Values can be nodes, not just strings
 
-`innerHTML` accepts a string. `xhtm-dom` accepts DOM nodes, nested arrays, strings, numbers, and components in the same child position:
+`innerHTML` accepts a string. `htm-dom` accepts DOM nodes, nested arrays, strings, numbers, and components in the same child position:
 
 ```js
 const items = ["One", "Two", "Three"];
@@ -57,7 +57,7 @@ Existing nodes are appended directly. Nested arrays are recursively flattened, w
 
 ### 3. DOM properties, events, and refs are first-class
 
-An `innerHTML` string can describe attributes, but it cannot assign live object properties or attach event listeners without a second pass through the DOM. `xhtm-dom` does both during creation:
+An `innerHTML` string can describe attributes, but it cannot assign live object properties or attach event listeners without a second pass through the DOM. `htm-dom` does both during creation:
 
 ```js
 const inputRef = { current: null };
@@ -104,7 +104,7 @@ This sets the element's styles and creates attributes such as `data-user-id="42"
 
 ### 4. The DOM tree is available immediately
 
-`xhtm-dom` creates the final DOM nodes directly. There is no virtual DOM, JSX compiler, rendering runtime, or string-to-DOM round trip to understand:
+`htm-dom` creates the final DOM nodes directly. There is no virtual DOM, JSX compiler, rendering runtime, or string-to-DOM round trip to understand:
 
 ```js
 const content = html`
@@ -201,12 +201,12 @@ This library is not a universal replacement for `innerHTML`:
 * Use a UI framework when you need state management, reconciliation, effects, routing, or lifecycle hooks.
 * Use a DOM implementation such as `jsdom` for server-side use and configure the environment appropriately.
 
-Choose `xhtm-dom` when dynamic values, direct DOM behavior, small components, and TypeScript types matter more than serializing a string.
+Choose `htm-dom` when dynamic values, direct DOM behavior, small components, and TypeScript types matter more than serializing a string.
 
 ## Installation
 
 ```sh
-npm install xhtm-dom
+npm install htm-dom
 ```
 
 The package exposes compiled files from `dist`:
@@ -249,7 +249,7 @@ npm run build:docs
 
 `npm run build:docs` reads this file and generates the GitHub copy at `README.md` plus a rendered HTML copy at `docs/README.greasyfork.html`. It expands package metadata, converts Markdown to HTML, and highlights fenced code blocks with Shiki. Run it after changing this source README.
 
-This source uses Handlebars' Mustache-style templates. Package metadata is available under `package`, so `xhtm-dom` and `0.0.0` are replaced from `package.json` during the docs build.
+This source uses Handlebars' Mustache-style templates. Package metadata is available under `package`, so `htm-dom` and `0.0.0` are replaced from `package.json` during the docs build.
 
 ## License
 

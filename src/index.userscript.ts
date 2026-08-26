@@ -1,9 +1,9 @@
-import * as exports from "./index";
-
 export * from "./index";
 
+import * as exports from "./index";
+
 declare global {
-  var htmdom: typeof exports;
+  var HTMDOM: typeof exports;
 }
 
 const globalContext: typeof globalThis = (() => {
@@ -26,4 +26,4 @@ const globalContext: typeof globalThis = (() => {
   throw new Error("Unable to locate the global object");
 })();
 
-globalContext.htmdom = exports;
+globalContext.HTMDOM = exports;

@@ -6,10 +6,10 @@ import "../src/index.userscript";
 
 describe("html tagged template", () => {
   it("installs the browser globals consistently for userscript builds", () => {
-    expect(globalThis.htmdom).toBeDefined();
+    expect(globalThis.HTMDOM).toBeDefined();
 
-    expect(globalThis.htmdom.html).toBe(html);
-    expect(globalThis.htmdom.h).toBe(h);
+    expect(globalThis.HTMDOM.html).toBe(html);
+    expect(globalThis.HTMDOM.h).toBe(h);
   });
 
   it("creates an element with interpolated text", () => {

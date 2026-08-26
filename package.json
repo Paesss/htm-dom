@@ -1,16 +1,17 @@
 {
-  "name": "xhtm-dom",
+  "name": "htm-dom",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:userscript": "vite build --config vite.userscript.config.ts",
     "prebuild": "npm run build:config && npm run test",
-    "prebuild:userscript": "npm run build:config",
+    "build:internal": "vite build",
+    "build": "npm run prebuild && npm run build:internal",
+    "build:userscript": "npm run prebuild && npm run build:userscript:internal",
+    "build:userscript:internal": "vite build --config vite.userscript.config.ts",
     "build:config": "tsc -p tsconfig.node.json --noEmit",
     "build:types": "tsc -p tsconfig.types.json",
-    "build:package": "npm run prebuild && npm run build:types && vite build && vite build --config vite.userscript.config.ts",
+    "build:package": "npm run prebuild && npm run build:types && npm run build:internal && npm run build:userscript:internal",
     "build:docs": "tsx scripts/render-docs.ts",
     "test": "vitest run --environment jsdom",
     "preview": "vite preview"
@@ -18,20 +19,21 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/xhtm-dom.js",
-      "require": "./dist/xhtm-dom.cjs",
-      "default": "./dist/xhtm-dom.umd.js"
+      "import": "./dist/htm-dom.js",
+      "require": "./dist/htm-dom.cjs",
+      "default": "./dist/htm-dom.umd.js"
     }
   },
-  "main": "./dist/xhtm-dom.cjs",
-  "module": "./dist/xhtm-dom.js",
-  "unpkg": "./dist/xhtm-dom.umd.js",
-  "jsdelivr": "./dist/xhtm-dom.umd.js",
+  "main": "./dist/htm-dom.cjs",
+  "module": "./dist/htm-dom.js",
+  "unpkg": "./dist/htm-dom.umd.js",
+  "jsdelivr": "./dist/htm-dom.umd.js",
   "files": [
     "dist"
   ],
   "devDependencies": {
     "@biomejs/biome": "2.5.9",
+    "@biomejs/js-api": "^6.0.0",
     "@types/node": "^26.2.0",
     "handlebars": "^4.7.9",
     "jsdom": "^30.0.1",

@@ -1,33 +1,32 @@
 import { defineConfig, mergeConfig } from "vite";
 
-export const minimalConfig = defineConfig({
+export const sharedConfig = defineConfig({
   build: {
     target: "es2020",
-    minify: false,
+    minify: true,
     emptyOutDir: false,
-
   },
 });
 
 export default mergeConfig(
-  minimalConfig,
+  sharedConfig,
   defineConfig({
     build: {
       lib: {
-        name: "htmdom",
+        name: "HTMDOM",
         formats: ["es", "cjs", "umd"],
         entry: "src/index.ts",
         fileName: (format) => {
           switch (format) {
             case "cjs":
             case "commonjs":
-              return "xhtm-dom.cjs";
+              return "htm-dom.cjs";
             case "es":
             case "esm":
             case "module":
-              return "xhtm-dom.js";
+              return "htm-dom.js";
             default:
-              return `xhtm-dom.${format}.js`;
+              return `htm-dom.${format}.js`;
           }
         },
       },

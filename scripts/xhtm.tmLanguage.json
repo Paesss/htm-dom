@@ -1,5 +1,5 @@
 {
-  "name": "XHTM",
+  "name": "xhtm",
   "scopeName": "source.xhtm",
   "fileTypes": ["xhtm"],
   "injectionSelector": "L:source.js -comment -string, L:source.ts -comment -string",
