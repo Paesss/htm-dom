@@ -270,7 +270,7 @@ npm run build:docs
 
 `npm run build:docs` reads this file and generates the GitHub copy at `README.md` plus a rendered HTML copy at `docs/README.greasyfork.html`. It expands package metadata, converts Markdown to HTML, and highlights fenced code blocks with Shiki. Run it after changing this source README.
 
-This source uses Handlebars' Mustache-style templates. Package metadata is available under `package`, so `htm-dom` and `0.1.4` are replaced from `package.json` during the docs build.
+This source uses Handlebars' Mustache-style templates. Package metadata is available under `package`, so `htm-dom` and `0.1.5` are replaced from `package.json` during the docs build.
 
 ## License
 
