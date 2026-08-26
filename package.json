@@ -51,7 +51,6 @@
     "@biomejs/biome": "2.5.9",
     "@types/node": "^26.2.0",
     "handlebars": "^4.7.9",
-    "htm-dom": "^0.1.2",
     "jsdom": "^30.0.1",
     "marked": "^18.0.10",
     "marked-shiki": "^1.2.1",
