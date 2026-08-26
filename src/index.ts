@@ -1,3 +1,4 @@
+export { default as h } from "./dom/index.js";
 export type {
   ComponentFunction,
   DOMEventHandlers,
@@ -8,6 +9,4 @@ export type {
   SVGProps,
   VNodeChild,
 } from "./dom/index.ts";
-
-export { default as h } from "./dom/index.ts";
-export { default as html } from "./html.ts";
+export { default as html } from "./html.js";

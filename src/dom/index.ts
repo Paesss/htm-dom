@@ -8,4 +8,4 @@ export type {
   SVGProps,
   VNodeChild,
 } from "./dom.ts";
-export { default } from "./factory.ts";
+export { default } from "./factory.js";
