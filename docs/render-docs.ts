@@ -35,6 +35,8 @@ const languageAliases: Record<string, BundledLanguage | "xhtm"> = {
   yml: "yaml",
 };
 
+import { html } from "htm-dom";
+
 const source = await readFile(sourcePath, "utf8");
 
 const sourceWithMetadata = Handlebars.compile(source)({

@@ -11,6 +11,23 @@ document.body.append(view);
 
 The template describes the structure. Dynamic values stay values: strings become text, DOM nodes stay nodes, arrays are flattened, and functions can produce components. The result is a real `Element`, `SVGElement`, `DocumentFragment`, or `Text` node.
 
+## Quickstart
+
+ES
+```js
+import { html, h } from "htm-dom";
+```
+
+CommonJS
+```js
+const { html, h } = require("htm-dom");
+```
+
+UMD in Browser and Userscript
+```js
+const { html, h } = HTMDOM;
+```
+
 ## Why use it instead of `innerHTML`?
 
 ### 1. Dynamic content does not become markup
