@@ -9,7 +9,7 @@ export type {
   HtmlElementForTag,
   SVGTagName,
   SvgElementForTag,
-} from "./dom-elements.ts";
+} from "./dom-elements.js";
 
 export type VNodeChild = Node | string | number | boolean | null | undefined | VNodeChild[];
 
