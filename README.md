@@ -198,6 +198,10 @@ This library is not a universal replacement for `innerHTML`:
 
 * Use `innerHTML` when you already have trusted, complete HTML and want the browser to parse it as HTML.
 * Use a sanitizer before inserting any HTML that is not fully trusted.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
 * Use a UI framework when you need state management, reconciliation, effects, routing, or lifecycle hooks.
 * Use a DOM implementation such as `jsdom` for server-side use and configure the environment appropriately.
 

@@ -7,9 +7,14 @@
     "type": "git",
     "url": "git+https://github.com/Paesss/htm-dom.git"
   },
+  "author": {
+    "name": "Paesss",
+    "url": "https://github.com/Paesss"
+  },
   "bugs": {
     "url": "https://github.com/Paesss/htm-dom/issues"
   },
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
