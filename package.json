@@ -26,6 +26,7 @@
     "build:config": "tsc -p tsconfig.node.json --noEmit",
     "build:types": "tsc -p tsconfig.types.json",
     "build:package": "npm run prebuild && npm run build:types && npm run build:internal && npm run build:userscript:internal",
+    "prepublishOnly": "npm run build:package",
     "build:docs:internal": "tsx docs/render-docs.ts",
     "build:docs": "npm run build:docs:internal && npm run format",
     "test": "vitest run --environment jsdom",

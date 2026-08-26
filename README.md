@@ -198,10 +198,6 @@ This library is not a universal replacement for `innerHTML`:
 
 * Use `innerHTML` when you already have trusted, complete HTML and want the browser to parse it as HTML.
 * Use a sanitizer before inserting any HTML that is not fully trusted.
-
-## License
-
-MIT. See [LICENSE](LICENSE).
 * Use a UI framework when you need state management, reconciliation, effects, routing, or lifecycle hooks.
 * Use a DOM implementation such as `jsdom` for server-side use and configure the environment appropriately.
 
@@ -243,6 +239,10 @@ npm run build
 
 Additional commands:
 
+## License
+
+MIT. See [LICENSE](../LICENSE).
+
 ```sh
 npm run build:types
 npm run build:lib
@@ -253,7 +253,7 @@ npm run build:docs
 
 `npm run build:docs` reads this file and generates the GitHub copy at `README.md` plus a rendered HTML copy at `docs/README.greasyfork.html`. It expands package metadata, converts Markdown to HTML, and highlights fenced code blocks with Shiki. Run it after changing this source README.
 
-This source uses Handlebars' Mustache-style templates. Package metadata is available under `package`, so `htm-dom` and `0.1.0` are replaced from `package.json` during the docs build.
+This source uses Handlebars' Mustache-style templates. Package metadata is available under `package`, so `htm-dom` and `0.1.1` are replaced from `package.json` during the docs build.
 
 ## License
 

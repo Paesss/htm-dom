@@ -239,6 +239,10 @@ npm run build
 
 Additional commands:
 
+## License
+
+MIT. See [LICENSE](../LICENSE).
+
 ```sh
 npm run build:types
 npm run build:lib
