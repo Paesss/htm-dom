@@ -3,7 +3,7 @@ import { defineConfig, mergeConfig } from "vite";
 export const sharedConfig = defineConfig({
   build: {
     target: "es2020",
-    minify: true,
+    minify: false,
     emptyOutDir: false,
   },
 });
