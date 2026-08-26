@@ -1,5 +1,5 @@
-import type { CombinedBooleanKeys, SVGTagName } from "../types/dom";
-import type { MissingKeys } from "../types/type-utils";
+import type { CombinedBooleanKeys, SVGTagName } from "./dom";
+import type { MissingKeys } from "./type-utils";
 
 export const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 

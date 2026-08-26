@@ -1,7 +1,7 @@
 import htm from "xhtm";
+import type { VNodeChild } from "./dom";
 import h from "./dom";
 import { appendChildren } from "./dom/children";
-import type { VNodeChild } from "./types/dom";
 import { isNode } from "./utils/dom";
 
 const boundHtm = htm.bind(h);

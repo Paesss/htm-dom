@@ -1,4 +1,4 @@
-import type { VNodeChild } from "../types/dom";
+import type { VNodeChild } from "../dom";
 import { isNode } from "../utils/dom";
 
 export function appendChildren(parent: Node, children: VNodeChild[]): void {

@@ -7,5 +7,5 @@ export type {
   StyleObject,
   SVGProps,
   VNodeChild,
-} from "../types/dom";
+} from "./dom";
 export { default } from "./factory";

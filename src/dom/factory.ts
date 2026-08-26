@@ -1,3 +1,5 @@
+import { appendChildren } from "./children";
+import { getSvgTagName, SVG_NAMESPACE } from "./constants";
 import type {
   CanonicalHtmlTagName,
   CanonicalSvgTagName,
@@ -8,9 +10,7 @@ import type {
   SVGProps,
   SvgElementForTag,
   VNodeChild,
-} from "../types/dom";
-import { appendChildren } from "./children";
-import { getSvgTagName, SVG_NAMESPACE } from "./constants";
+} from "./dom";
 import { setProps } from "./props";
 
 // Tracks active SVG namespace context down the synchronous tree evaluation
