@@ -1,12 +1,7 @@
+import type { Assert, IsComplete } from "../utils/type-utils.js";
 import type { CombinedBooleanKeys, SVGTagName } from "./dom.js";
-import type { MissingKeys } from "./type-utils.js";
 
 export const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
-
-type Assert<T extends true> = T;
-
-type IsComplete<All extends PropertyKey, Actual extends readonly PropertyKey[]> =
-  MissingKeys<All, Actual> extends never ? true : ["Missing keys", MissingKeys<All, Actual>];
 
 const BOOLEAN_PROP_KEYS = [
   "allowFullscreen",

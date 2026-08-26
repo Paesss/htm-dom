@@ -1,5 +1,6 @@
 import type { VNodeChild } from "../dom/index.js";
 import { isNode } from "../utils/dom.js";
+import { isBooleanPropKey } from "./constants.js";
 
 export function appendChildren(parent: Node, children: VNodeChild[]): void {
   for (let i = 0; i < children.length; i++) {
@@ -16,8 +17,6 @@ export function appendChildren(parent: Node, children: VNodeChild[]): void {
     }
   }
 }
-
-import { isBooleanPropKey } from "./constants.js";
 
 export function setDataset(el: Element, dataset: Record<string, unknown>): void {
   if ("dataset" in el && el.dataset) {

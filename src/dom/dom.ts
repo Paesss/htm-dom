@@ -1,5 +1,5 @@
+import type { BooleanKeys } from "../utils/type-utils.js";
 import type { CombinedElement, DOMEventHandlers } from "./dom-elements.js";
-import type { BooleanKeys } from "./type-utils.js";
 
 export type {
   CanonicalHtmlTagName,

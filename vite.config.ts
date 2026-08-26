@@ -51,11 +51,8 @@ export default mergeConfig(
         fileName: (format) => {
           switch (format) {
             case "cjs":
-            case "commonjs":
               return "htm-dom.cjs";
             case "es":
-            case "esm":
-            case "module":
               return "htm-dom.js";
             default:
               return `htm-dom.${format}.js`;

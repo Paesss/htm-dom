@@ -24,3 +24,8 @@ export type MissingKeys<All extends PropertyKey, Actual extends readonly Propert
   All,
   Actual[number]
 >;
+
+export type Assert<T extends true> = T;
+
+export type IsComplete<All extends PropertyKey, Actual extends readonly PropertyKey[]> =
+  MissingKeys<All, Actual> extends never ? true : ["Missing keys", MissingKeys<All, Actual>];
