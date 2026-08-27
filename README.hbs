@@ -28,6 +28,13 @@ UMD in Browser and Userscript
 const { html, h } = HTMDOM;
 ```
 
+Then...
+```js
+const div = html`<div></div>`;
+document.body.appendChild(div);
+```
+
+
 ## Why use it instead of `innerHTML`?
 
 ### 1. Dynamic content does not become markup
