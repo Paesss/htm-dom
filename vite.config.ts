@@ -46,18 +46,13 @@ export default mergeConfig(
     build: {
       lib: {
         name: "HTMDOM",
-        formats: ["es", "cjs", "umd"],
         entry: "src/index.ts",
-        fileName: (format) => {
-          switch (format) {
-            case "cjs":
-              return "htm-dom.cjs";
-            case "es":
-              return "htm-dom.js";
-            default:
-              return `htm-dom.${format}.js`;
-          }
-        },
+        formats: ["es", "cjs", "umd"],
+        fileName: (fmt) =>
+          (<Record<string, string>>{
+            es: "htm-dom.js",
+            cjs: "htm-dom.cjs",
+          })[fmt] ?? `htm-dom.${fmt}.js`,
       },
     },
   })
