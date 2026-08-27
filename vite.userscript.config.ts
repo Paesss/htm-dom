@@ -11,7 +11,6 @@ export default mergeConfig(
         entry: "src/index.userscript.ts",
         userscript: {
           namespace: pkg.author.url,
-          license: "MIT",
           match: ["*://*/*"],
         },
       }),

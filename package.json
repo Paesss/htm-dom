@@ -2,6 +2,13 @@
   "name": "htm-dom",
   "version": "0.1.11",
   "description": "A tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to innerHTML",
+  "keywords": [
+    "dom",
+    "htm",
+    "html",
+    "tagged-templates",
+    "typescript"
+  ],
   "homepage": "https://github.com/Paesss/htm-dom",
   "repository": {
     "type": "git",
@@ -16,24 +23,12 @@
   },
   "license": "MIT",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "prebuild": "npm run build:config && npm run build:docs:internal && npm run format && npm run test",
-    "build:internal": "vite build",
-    "build": "npm run prebuild && npm run build:internal",
-    "build:userscript": "npm run prebuild && npm run build:userscript:internal",
-    "build:userscript:internal": "vite build --config vite.userscript.config.ts",
-    "build:config": "tsc -p tsconfig.node.json --noEmit",
-    "build:types": "tsc -p tsconfig.types.json",
-    "build:package": "npm run prebuild && npm run build:types && npm run build:internal && npm run build:userscript:internal",
-    "version": "npm run build:package && git add .",
-    "prepublishOnly": "npm run build:package",
-    "build:docs:internal": "tsx docs/render-docs.ts",
-    "build:docs": "npm run build:docs:internal && npm run format",
-    "test": "vitest run --environment jsdom",
-    "format": "npx @biomejs/biome format --write",
-    "preview": "vite preview"
-  },
+  "sideEffects": false,
+  "main": "./dist/htm-dom.cjs",
+  "module": "./dist/htm-dom.js",
+  "types": "./dist/types/index.d.ts",
+  "unpkg": "./dist/htm-dom.umd.js",
+  "jsdelivr": "./dist/htm-dom.umd.js",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -41,25 +36,41 @@
       "require": "./dist/htm-dom.cjs"
     }
   },
-  "main": "./dist/htm-dom.cjs",
-  "module": "./dist/htm-dom.js",
-  "unpkg": "./dist/htm-dom.umd.js",
-  "jsdelivr": "./dist/htm-dom.umd.js",
   "files": [
     "dist"
   ],
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest run --environment jsdom",
+    "format": "biome format --write",
+    "preview": "vite preview",
+    "deps:check": "npx npm-check-updates",
+    "deps:update": "npx npm-check-updates -u && npm install",
+    "build": "npm run build:lib && npm run build:userscript",
+    "build:lib": "npm run build:types && npm run build:internal",
+    "build:internal": "vite build",
+    "build:userscript": "vite build --config vite.userscript.config.ts",
+    "build:types": "tsc -p tsconfig.types.json",
+    "build:docs": "npm run build:docs:internal && npm run format",
+    "build:docs:internal": "tsx docs/render-docs.ts",
+    "build:config": "tsc -p tsconfig.node.json --noEmit",
+    "prebuild": "npm run build:config && npm run build:docs:internal && npm run format",
+    "preversion": "npm run test",
+    "version": "npm run build && git add .",
+    "prepublishOnly": "npm run test && npm run build"
+  },
   "devDependencies": {
-    "@biomejs/biome": "2.5.9",
-    "@types/node": "^26.2.0",
+    "@biomejs/biome": "^2.5.10",
+    "@types/node": "^26.4.0",
     "handlebars": "^4.7.9",
     "jsdom": "^30.0.1",
-    "marked": "^18.0.10",
+    "marked": "^18.0.11",
     "marked-shiki": "^1.2.1",
     "shiki": "^4.4.3",
     "tslib": "^2.8.1",
-    "typescript": "^6.0.3",
-    "vite": "^8.0.11",
-    "vite-plugin-monkey": "^8.0.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2",
+    "vite-plugin-monkey": "^8.1.0",
     "vitest": "^4.1.11"
   },
   "dependencies": {
