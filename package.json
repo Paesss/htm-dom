@@ -46,7 +46,8 @@
     ],
     "README.{hbs,md,html}": [
       "tsx docs/render-docs.ts",
-      "biome format --write --no-errors-on-unmatched README.html"
+      "biome format --write --no-errors-on-unmatched README.html",
+      "git add README.md README.html"
     ]
   },
   "scripts": {
