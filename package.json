@@ -39,6 +39,12 @@
   "files": [
     "dist"
   ],
+  "lint-staged": {
+    "*.{js,ts}": [
+      "biome format --write",
+      "vitest related --run"
+    ]
+  },
   "scripts": {
     "dev": "vite",
     "test": "vitest run --environment jsdom",
@@ -59,13 +65,16 @@
     "prebuild": "npm run build:config && npm run build:docs:internal && npm run format",
     "preversion": "npm run test",
     "version": "npm run build && git add .",
-    "prepublishOnly": "npm run test && npm run build"
+    "prepublishOnly": "npm run test && npm run build",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.10",
     "@types/node": "^26.4.0",
     "handlebars": "^4.7.9",
+    "husky": "^9.1.7",
     "jsdom": "^30.0.1",
+    "lint-staged": "^17.3.0",
     "marked": "^18.0.11",
     "marked-shiki": "^1.2.1",
     "rimraf": "^6.1.3",
