@@ -45,8 +45,7 @@
       "vitest related --run"
     ],
     "README.{hbs,md,html}": [
-      "tsx docs/render-docs.ts",
-      "biome format --write --no-errors-on-unmatched README.html",
+      "npm run build:docs --",
       "git add README.md README.html"
     ]
   },
