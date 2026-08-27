@@ -232,7 +232,6 @@ The package exposes compiled files from `dist`:
 
 * `import`: ES module
 * `require`: CommonJS
-* `default`/browser: UMD build
 * `types`: generated TypeScript declarations
 
 The library expects a browser-like DOM with `document` available. It is suitable for browser scripts, userscripts, and applications that already have a DOM.
