@@ -12,10 +12,9 @@ import xhtmGrammar from "./xhtm.tmLanguage.json" with { type: "json" };
 const theme = "github-dark-default";
 const root = resolve(import.meta.dirname, "..");
 
-const docsPath = resolve(root, "docs");
-const githubOutputPath = resolve(root, "README.md");
-const greaseForkOutputPath = resolve(docsPath, "README.greasyfork.html");
-const sourcePath = resolve(docsPath, "README.src.md");
+const readmeTemplatePath = resolve(root, "README.hbs");
+const readmeMarkdownOutputPath = resolve(root, "README.md");
+const readmeHtmlOutputPath = resolve(root, "README.html");
 
 const languageAliases: Record<string, BundledLanguage | "xhtm"> = {
   bash: "bash",
@@ -35,12 +34,14 @@ const languageAliases: Record<string, BundledLanguage | "xhtm"> = {
   yml: "yaml",
 };
 
-const source = await readFile(sourcePath, "utf8");
+const readmeTemplate = await readFile(readmeTemplatePath, "utf8");
 
-const sourceWithMetadata = Handlebars.compile(source)({
+const readmeMarkdownContent = Handlebars.compile(readmeTemplate)({
   package: packageMetadata,
 });
-await writeFile(githubOutputPath, sourceWithMetadata);
+const readmeMarkdownWithComment: string = `<!-- This file is auto-generated. Edit README.hbs instead -->\n\n${readmeMarkdownContent}`;
+
+await writeFile(readmeMarkdownOutputPath, readmeMarkdownWithComment);
 
 const highlighter = await createHighlighter({
   langs: [
@@ -58,7 +59,7 @@ const highlighter = await createHighlighter({
   themes: [theme],
 });
 
-const greaseForkHtml = (await new Marked()
+const readmeHtmlContent = (await new Marked()
   .use(
     markedShiki({
       async highlight(code, lang) {
@@ -73,9 +74,11 @@ const greaseForkHtml = (await new Marked()
       },
     })
   )
-  .parse(sourceWithMetadata, { gfm: true })) as string;
+  .parse(readmeMarkdownWithComment, { gfm: true })) as string;
 
-await writeFile(greaseForkOutputPath, greaseForkHtml);
+await writeFile(readmeHtmlOutputPath, readmeHtmlContent);
 highlighter.dispose();
 
-console.log(`Rendered ${sourcePath} -> ${githubOutputPath} and ${greaseForkOutputPath}`);
+console.log(
+  `Rendered ${readmeTemplatePath} -> ${readmeMarkdownOutputPath} and ${readmeHtmlOutputPath}`
+);

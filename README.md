@@ -1,3 +1,5 @@
+<!-- This file is auto-generated. Edit README.hbs instead -->
+
 # htm-dom
 
 A tiny, framework-free DOM helper for JavaScript and TypeScript. It gives you HTML-like tagged templates without building one large HTML string and handing it to innerHTML.
