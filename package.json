@@ -43,12 +43,17 @@
     "*.{js,ts}": [
       "biome format --write --no-errors-on-unmatched",
       "vitest related --run"
+    ],
+    "README.{hbs,md,html}": [
+      "tsx docs/render-docs.ts",
+      "biome format --write --no-errors-on-unmatched README.html",
+      "git add README.md README.html"
     ]
   },
   "scripts": {
     "dev": "vite",
     "test": "vitest run --environment jsdom",
-    "format": "biome format --write",
+    "format": "biome format --write --no-errors-on-unmatched",
     "preview": "vite preview",
     "deps:check": "npx npm-check-updates",
     "deps:update": "npx npm-check-updates -u && npm install",
@@ -59,7 +64,7 @@
     "build:internal": "vite build",
     "build:userscript": "vite build --config vite.userscript.config.ts",
     "build:types": "npm run clean:types && tsc -p tsconfig.types.json",
-    "build:docs": "npm run build:docs:internal && npm run format",
+    "build:docs": "npm run build:docs:internal && biome format --write --no-errors-on-unmatched README.html",
     "build:docs:internal": "tsx docs/render-docs.ts",
     "build:config": "tsc -p tsconfig.node.json --noEmit",
     "prebuild": "npm run build:config && npm run build:docs:internal && npm run format",
