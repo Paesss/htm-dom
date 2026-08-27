@@ -15,7 +15,8 @@
   The template describes the structure. Dynamic values stay values: strings become text, DOM nodes
   stay nodes, arrays are flattened, and functions can produce components. The result is a real
   <code>Element</code>, <code>SVGElement</code>, <code>DocumentFragment</code>, or
-  <code>Text</code> node.
+  <code>Text</code>
+  node.
 </p>
 <h2>Quickstart</h2>
 <p>ES</p>
@@ -49,8 +50,8 @@
 <span class="line"><span style="color:#E6EDF3">document.body.innerHTML </span><span style="color:#FF7B72">=</span><span style="color:#E6EDF3"> view;</span></span></code></pre>
 <p>
   The interpolated value is now part of the HTML source. If it contains markup,
-  <code>innerHTML</code> parses that markup as elements. Escaping every value correctly is your
-  responsibility.
+  <code>innerHTML</code>
+  parses that markup as elements. Escaping every value correctly is your responsibility.
 </p>
 <p>With <code>htm-dom</code>, the static template and dynamic values remain separate:</p>
 <pre
@@ -97,7 +98,8 @@
 <p>
   An <code>innerHTML</code> string can describe attributes, but it cannot assign live object
   properties or attach event listeners without a second pass through the DOM.
-  <code>htm-dom</code> does both during creation:
+  <code>htm-dom</code>
+  does both during creation:
 </p>
 <pre
   class="shiki github-dark-default"
@@ -122,7 +124,8 @@
   </li>
   <li>
     <code>onClick</code>, <code>onInput</code>, and other <code>on*</code> props call
-    <code>addEventListener</code> directly.
+    <code>addEventListener</code>
+    directly.
   </li>
   <li>
     <code>ref</code>
@@ -159,7 +162,8 @@
 <span class="line"><span style="color:#E6EDF3">`</span><span style="color:#E6EDF3">;</span></span></code></pre>
 <p>
   This sets the element&#39;s styles and creates attributes such as
-  <code>data-user-id=&quot;42&quot;</code> and <code>data-source=&quot;inbox&quot;</code>.
+  <code>data-user-id=&quot;42&quot;</code>
+  and <code>data-source=&quot;inbox&quot;</code>.
 </p>
 <h3>4. The DOM tree is available immediately</h3>
 <p>
@@ -180,7 +184,8 @@
 <p>
   You can pass the result to <code>append</code>, <code>appendChild</code>, or standard DOM APIs.
   Top-level siblings become a <code>DocumentFragment</code>; a single scalar is normalized to a
-  <code>Text</code> node.
+  <code>Text</code>
+  node.
 </p>
 <h2>Components without a framework</h2>
 <p>
@@ -360,7 +365,8 @@
 <p>
   This source uses Handlebars&#39; Mustache-style templates. Package metadata is available under
   <code>package</code>, so <code>htm-dom</code> and <code>0.1.11</code> are replaced from
-  <code>package.json</code> during the docs build.
+  <code>package.json</code>
+  during the docs build.
 </p>
 <h2>License</h2>
 <p>

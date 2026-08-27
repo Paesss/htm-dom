@@ -41,7 +41,7 @@
   ],
   "lint-staged": {
     "*.{js,ts}": [
-      "biome format --write",
+      "biome format --write --no-errors-on-unmatched",
       "vitest related --run"
     ]
   },
