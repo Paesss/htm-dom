@@ -41,7 +41,7 @@
   ],
   "lint-staged": {
     "*.{js,ts}": [
-      "biome format --write --no-errors-on-unmatched",
+      "npm run format --",
       "vitest related --run"
     ],
     "README.{hbs,md,html}": [
